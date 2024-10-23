@@ -176,7 +176,7 @@ int main(int, char**) {
     glBindVertexArray(0); 
 
     // Enable point size
-    glPointSize(5.0f);  // Makes the points larger
+    glPointSize(1.0f);  // Makes the points larger
 
     // Main loop
     while (!glfwWindowShouldClose(window)) {

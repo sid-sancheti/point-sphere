@@ -23,10 +23,12 @@ ThreeDPoint points3D[NUM_POINTS];
 /**
  * Populates the 2D array of points using the formula
  * Derived from this paper: https://scholar.rose-hulman.edu/cgi/viewcontent.cgi?article=1387&context=rhumj
+ * 
+ * @param points2D The 2D array of points to populate
+ * @see #populate3Darray()
  */
 
-TwoDPoint * populate2Darray() {
-    TwoDPoint * points2D = new TwoDPoint[NUM_POINTS];
+void populate2Darray(TwoDPoint * points2D) {
     float s = -1 + 1/(NUM_POINTS - 1);
     const float step_size = (2 - 2/(NUM_POINTS - 1))/(NUM_POINTS - 1);
     const float x = 0.12 + 1.1999 * NUM_POINTS;
@@ -35,12 +37,17 @@ TwoDPoint * populate2Darray() {
         points2D[i].u = s * x;
         points2D[i].v = M_PI/2 + copysignf(1.0f, s) * (1 - sqrt(1 - abs(s)));
     }
+} /* populate2Darray() */
 
-    return points2D;
-}
+/**
+ * Calculates the 3D coordinates from the 2D projection of the spiral
+ * Uses the {@link #populate2Darray(TwoDPoint *)} function to create the 2D array
+ * of points.
+ */
 
 void populate3Darray() {
-    TwoDPoint * points2D = populate2Darray();
+    TwoDPoint * points2D = new TwoDPoint[NUM_POINTS];
+    populate2Darray(points2D);
     for (int i = 0; i < NUM_POINTS; i++) {
         float u = points2D[i].u;
         float v = points2D[i].v;

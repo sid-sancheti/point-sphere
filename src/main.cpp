@@ -18,7 +18,41 @@ typedef struct {
     float x, y, z;
 } ThreeDPoint;
 
-TwoDPoint points[NUM_POINTS];
+ThreeDPoint points3D[NUM_POINTS];
+
+/**
+ * Populates the 2D array of points using the formula
+ * Derived from this paper: https://scholar.rose-hulman.edu/cgi/viewcontent.cgi?article=1387&context=rhumj
+ */
+
+TwoDPoint * populate2Darray() {
+    TwoDPoint * points2D = new TwoDPoint[NUM_POINTS];
+    float s = -1 + 1/(NUM_POINTS - 1);
+    const float step_size = (2 - 2/(NUM_POINTS - 1))/(NUM_POINTS - 1);
+    const float x = 0.12 + 1.1999 * NUM_POINTS;
+
+    for (int i = 0; i < NUM_POINTS; i++, s += step_size) {
+        points2D[i].u = s * x;
+        points2D[i].v = M_PI/2 + copysignf(1.0f, s) * (1 - sqrt(1 - abs(s)));
+    }
+
+    return points2D;
+}
+
+void populate3Darray() {
+    TwoDPoint * points2D = populate2Darray();
+    for (int i = 0; i < NUM_POINTS; i++) {
+        float u = points2D[i].u;
+        float v = points2D[i].v;
+
+        points3D[i].x = cos(u) * cos(v);
+        points3D[i].y = sin(u) * cos(v);
+        points3D[i].z = sin(v);
+    }
+
+    delete points2D;
+    points2D = NULL;
+}
 
 int main(int, char**) {
     GLFWwindow * window = NULL;
@@ -26,6 +60,13 @@ int main(int, char**) {
         cerr << "Issue with inializing glfw" << endl;
         return -1;
     }
+
+    // Setup OpenGL version (using 3.3)
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+    populate3Darray();
 
     window = glfwCreateWindow(640, 400, "point-sphere", NULL, NULL);
     if (window == NULL) {
@@ -44,7 +85,7 @@ int main(int, char**) {
         return -1;
     }
 
-    glClearColor(0.25f, 0.5f, 0.75f, 1.0f);
+    // glClearColor(0.25f, 0.5f, 0.75f, 1.0f);
 
     while (!glfwWindowShouldClose(window)) {
         glfwPollEvents();
@@ -55,23 +96,4 @@ int main(int, char**) {
     glfwTerminate();
     window = NULL;
     return 0;
-}
-
-/**
- * Populates the 2D array of points using the formula
- * Derived from this paper: https://scholar.rose-hulman.edu/cgi/viewcontent.cgi?article=1387&context=rhumj
- */
-
-void populate2Darray() {
-    float s = -1 + 1/(NUM_POINTS - 1);
-    const float step_size = (2 - 2/(NUM_POINTS - 1))/(NUM_POINTS - 1);
-    const float x = 0.12 + 1.1999 * NUM_POINTS;
-
-
-    for (int i = 0; i < NUM_POINTS; i++, s += step_size) {
-        points[i].u = s * x;
-        points[i].v = M_PI/2 + copysignf(1.0f, s) * (1 - sqrt(1 - abs(s)));
-    }
-
-    
 }

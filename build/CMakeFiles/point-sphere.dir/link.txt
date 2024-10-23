@@ -1,0 +1,1 @@
+/usr/bin/c++ -g "CMakeFiles/point-sphere.dir/src/main.cpp.o" "CMakeFiles/point-sphere.dir/src/glad.c.o" -o point-sphere  -lglfw /usr/lib/x86_64-linux-gnu/libGLX.so /usr/lib/x86_64-linux-gnu/libOpenGL.so 

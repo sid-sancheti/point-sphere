@@ -1,0 +1,3 @@
+/home/sancheti/comsci/point-sphere/build/CMakeFiles/point-sphere.dir
+/home/sancheti/comsci/point-sphere/build/CMakeFiles/edit_cache.dir
+/home/sancheti/comsci/point-sphere/build/CMakeFiles/rebuild_cache.dir

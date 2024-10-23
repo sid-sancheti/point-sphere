@@ -54,6 +54,55 @@ void populate3Darray() {
     points2D = NULL;
 }
 
+unsigned int compileShader(unsigned int type, const char* source) {
+    unsigned int id = glCreateShader(type);
+    glShaderSource(id, 1, &source, nullptr);
+    glCompileShader(id);
+
+    // Error checking
+    int success;
+    char infoLog[512];
+    glGetShaderiv(id, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        glGetShaderInfoLog(id, 512, nullptr, infoLog);
+        cerr << "ERROR::SHADER::COMPILATION_FAILED\n" << infoLog << endl;
+    }
+    return id;
+}
+
+/**
+ * Create a shader program
+ * Set up the vertex and fragment shaders
+ */
+unsigned int createShaderProgram(const char* vertexShaderSource, const char* fragmentShaderSource) {
+    unsigned int program = glCreateProgram();
+    unsigned int vs = compileShader(GL_VERTEX_SHADER, vertexShaderSource);
+    unsigned int fs = compileShader(GL_FRAGMENT_SHADER, fragmentShaderSource);
+    
+    glAttachShader(program, vs);
+    glAttachShader(program, fs);
+    glLinkProgram(program);
+    
+    // Error checking for shader program linking
+    int success;
+    char infoLog[512];
+    glGetProgramiv(program, GL_LINK_STATUS, &success);
+    if (!success) {
+        glGetProgramInfoLog(program, 512, nullptr, infoLog);
+        cerr << "ERROR::PROGRAM::LINKING_FAILED\n" << infoLog << endl;
+    }
+    
+    glDeleteShader(vs);
+    glDeleteShader(fs);
+    
+    return program;
+}
+
+/**
+ * Main function
+ * Create and manage the window
+ */
+
 int main(int, char**) {
     GLFWwindow * window = NULL;
     if (!glfwInit()) {
@@ -66,13 +115,10 @@ int main(int, char**) {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    populate3Darray();
-
     window = glfwCreateWindow(640, 400, "point-sphere", NULL, NULL);
     if (window == NULL) {
         glfwTerminate();
         cerr << "Could not create window" << endl;
-        window = NULL;
         return -1;
     }
 
@@ -81,19 +127,80 @@ int main(int, char**) {
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         cerr << "Could not load OpenGL" << endl;
         glfwTerminate();
-        window = NULL;
         return -1;
     }
 
-    // glClearColor(0.25f, 0.5f, 0.75f, 1.0f);
+    // Set the viewport
+    glViewport(0, 0, 640, 400);
 
+    // Define your vertex and fragment shaders
+    const char* vertexShaderSource = R"glsl(
+        #version 330 core
+        layout (location = 0) in vec3 aPos;
+        void main() {
+            gl_Position = vec4(aPos, 1.0);
+        }
+    )glsl";
+
+    const char* fragmentShaderSource = R"glsl(
+        #version 330 core
+        out vec4 FragColor;
+        void main() {
+            FragColor = vec4(1.0, 1.0, 1.0, 1.0); // White color
+        }
+    )glsl";
+
+    unsigned int shaderProgram = createShaderProgram(vertexShaderSource, fragmentShaderSource);
+
+    // Populate the 3D points array
+    populate3Darray();
+
+    // Generate a VAO and VBO
+    unsigned int VAO, VBO;
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+
+    // Bind VAO
+    glBindVertexArray(VAO);
+
+    // Bind VBO, send points to GPU
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(points3D), points3D, GL_STATIC_DRAW);
+
+    // Tell OpenGL how to interpret the data in the VBO
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    // Unbind the VAO (optional, for safety)
+    glBindBuffer(GL_ARRAY_BUFFER, 0); 
+    glBindVertexArray(0); 
+
+    // Enable point size
+    glPointSize(5.0f);  // Makes the points larger
+
+    // Main loop
     while (!glfwWindowShouldClose(window)) {
         glfwPollEvents();
+
+        // Render
         glClear(GL_COLOR_BUFFER_BIT);
+
+        // Use the shader program
+        glUseProgram(shaderProgram);
+
+        // Bind the VAO and draw points
+        glBindVertexArray(VAO);
+        glDrawArrays(GL_POINTS, 0, NUM_POINTS);  // Draw all 700 points
+
+        // Swap buffers
         glfwSwapBuffers(window);
     }
 
+    // Cleanup
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glDeleteProgram(shaderProgram);
+
     glfwTerminate();
-    window = NULL;
     return 0;
 }

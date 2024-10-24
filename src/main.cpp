@@ -33,8 +33,6 @@ typedef struct {
     float x, y, z;
 } ThreeDPoint;
 
-ThreeDPoint points3D[NUM_POINTS];
-
 /**
  * Populates the 2D array of points using the formula
  * Derived from this paper: https://scholar.rose-hulman.edu/cgi/viewcontent.cgi?article=1387&context=rhumj
@@ -61,19 +59,19 @@ void populate2Darray(TwoDPoint * points2D) {
  */
 
 void populate3Darray() {
-    TwoDPoint * points2D = new TwoDPoint[NUM_POINTS];
-    populate2Darray(points2D);
-    for (int i = 0; i < NUM_POINTS; i++) {
-        float u = points2D[i].u;
-        float v = points2D[i].v;
+    // TwoDPoint * points2D = new TwoDPoint[NUM_POINTS];
+    // populate2Darray(points2D);
+    // for (int i = 0; i < NUM_POINTS; i++) {
+    //     float u = points2D[i].u;
+    //     float v = points2D[i].v;
 
-        points3D[i].x = cos(u) * cos(v);
-        points3D[i].y = sin(u) * cos(v);
-        points3D[i].z = sin(v);
-    }
+    //     points3D[i].x = cos(u) * cos(v);
+    //     points3D[i].y = sin(u) * cos(v);
+    //     points3D[i].z = sin(v);
+    // }
 
-    delete points2D;
-    points2D = NULL;
+    // delete points2D;
+    // points2D = NULL;
 }
 
 /**
@@ -127,20 +125,26 @@ int main(int, char**) {
     glViewport(0, 0, WIDTH, HEIGHT);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);  
 
-    populate3Darray();
+    float points3D[3 * NUM_POINTS];
+    TwoDPoint * points2D = new TwoDPoint[NUM_POINTS];
+    populate2Darray(points2D);
+    for (int i = 0; i < NUM_POINTS; i++) {
+        float u = points2D[i].u;
+        float v = points2D[i].v;
 
+        points3D[3*i] = cos(u) * cos(v);
+        points3D[3*i+1] = sin(u) * cos(v);
+        points3D[3*i+2] = sin(v);
+    }
+
+    delete points2D;
+    points2D = NULL;
 
     float vertices[] = {
-        -0.5f, -0.5f, 0.0f,
+        -0.79713667f, -0.5f, 0.0f,
         0.5f, -0.5f, 0.0f,
         0.0f,  0.5f, 0.0f
     };
-
-    unsigned int VBO = 0;
-    glGenBuffers(1, &VBO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);  
-    glBufferData(GL_ARRAY_BUFFER, sizeof(points3D), points3D, GL_STATIC_DRAW);
 
     // Set up the vertex shader
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -165,13 +169,23 @@ int main(int, char**) {
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader); 
 
+    unsigned int VBO = 0;
+    glGenBuffers(1, &VBO);
+
     unsigned int VAO = 0;
     glGenVertexArrays(1, &VAO);
-    glBindVertexArray(VAO);
-    glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+    glBindVertexArray(VAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(float) * NUM_POINTS, points3D, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, NULL);
+    glEnableVertexAttribArray(0);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(VAO);
+
     glPointSize(2.0);
     // Main loop
     while (!glfwWindowShouldClose(window)) {
@@ -179,11 +193,11 @@ int main(int, char**) {
         processInput(window);
 
         // Render
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT);
 
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO);
-        glDrawArrays(GL_POINTS, 0, 10);
+        glDrawArrays(GL_POINTS, 0, 3);
 
         // Check and call events and swap the buffers
         glfwPollEvents();

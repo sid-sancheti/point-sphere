@@ -62,50 +62,6 @@ void populate3Darray() {
     points2D = NULL;
 }
 
-unsigned int compileShader(unsigned int type, const char* source) {
-    unsigned int id = glCreateShader(type);
-    glShaderSource(id, 1, &source, nullptr);
-    glCompileShader(id);
-
-    // Error checking
-    int success;
-    char infoLog[512];
-    glGetShaderiv(id, GL_COMPILE_STATUS, &success);
-    if (!success) {
-        glGetShaderInfoLog(id, 512, nullptr, infoLog);
-        std::cerr << "ERROR::SHADER::COMPILATION_FAILED\n" << infoLog << std::endl;
-    }
-    return id;
-}
-
-/**
- * Create a shader program
- * Set up the vertex and fragment shaders
- */
-unsigned int createShaderProgram(const char* vertexShaderSource, const char* fragmentShaderSource) {
-    unsigned int program = glCreateProgram();
-    unsigned int vs = compileShader(GL_VERTEX_SHADER, vertexShaderSource);
-    unsigned int fs = compileShader(GL_FRAGMENT_SHADER, fragmentShaderSource);
-    
-    glAttachShader(program, vs);
-    glAttachShader(program, fs);
-    glLinkProgram(program);
-    
-    // Error checking for shader program linking
-    int success;
-    char infoLog[512];
-    glGetProgramiv(program, GL_LINK_STATUS, &success);
-    if (!success) {
-        glGetProgramInfoLog(program, 512, nullptr, infoLog);
-        std::cerr << "ERROR::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
-    }
-    
-    glDeleteShader(vs);
-    glDeleteShader(fs);
-    
-    return program;
-}
-
 /**
  * Callback function: window resize
  */
@@ -159,7 +115,7 @@ int main(int, char**) {
 
     populate3Darray();
 
-    glClearColor(0.5f, 0.0f, 0.2f, 1.0f);
+    glClearColor(0.5f, 0.05f, 0.2f, 1.0f);
     
     glDisable(GL_DEPTH_TEST);
 

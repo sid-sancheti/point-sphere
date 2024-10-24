@@ -25,13 +25,16 @@ const char *fragmentShaderSource = "#version 330 core\n"
     "   FragColor = vec4(1.0f, 1.0f, 1.0f, 1.0f);\n"
     "}\n\0";
 
+// w is only used for debugging purposes; it is always 1.0
 typedef struct {
-    float u, v;
+    float u, v, w;
 } TwoDPoint;
 
 typedef struct {
     float x, y, z;
 } ThreeDPoint;
+
+float points3D[3 * NUM_POINTS];
 
 /**
  * Populates the 2D array of points using the formula
@@ -42,13 +45,15 @@ typedef struct {
  */
 
 void populate2Darray(TwoDPoint * points2D) {
-    float s = -1 + 1/(NUM_POINTS - 1);
-    const float step_size = (2 - 2/(NUM_POINTS - 1))/(NUM_POINTS - 1);
+    float s = -1 + 1.0f /(NUM_POINTS - 1);
+    const float step_size = (2.0f - 2.0f/(NUM_POINTS - 1))/(NUM_POINTS - 1);
     const float x = 0.12 + 1.1999 * NUM_POINTS;
 
-    for (int i = 0; i < NUM_POINTS; i++, s += step_size) {
+    for (int i = 0; i < NUM_POINTS; i++) {
         points2D[i].u = s * x;
         points2D[i].v = M_PI/2 + copysignf(1.0f, s) * (1 - sqrt(1 - abs(s)));
+        points2D[i].w = 1.0f;
+        s += step_size;
     }
 } /* populate2Darray() */
 
@@ -59,19 +64,27 @@ void populate2Darray(TwoDPoint * points2D) {
  */
 
 void populate3Darray() {
-    // TwoDPoint * points2D = new TwoDPoint[NUM_POINTS];
-    // populate2Darray(points2D);
-    // for (int i = 0; i < NUM_POINTS; i++) {
-    //     float u = points2D[i].u;
-    //     float v = points2D[i].v;
+    TwoDPoint points2D[NUM_POINTS];
+    populate2Darray(points2D);
+    for (int i = 0; i < NUM_POINTS; i++) {
+        float u = points2D[i].u;
+        float v = points2D[i].v;
 
-    //     points3D[i].x = cos(u) * cos(v);
-    //     points3D[i].y = sin(u) * cos(v);
-    //     points3D[i].z = sin(v);
-    // }
+        points3D[3*i] = sin(u) * cos(v);
+        points3D[3*i+1] = sin(u) * sin(v);
+        points3D[3*i+2] = cos(u);
+    }
+}
 
-    // delete points2D;
-    // points2D = NULL;
+void print3D() {
+    std::cout << "float points3DInline[] = {" << std::endl;
+    for (int i = 0; i < NUM_POINTS; i++) {
+        std::cout << "\t";
+        std::cout << points3D[3*i] << "f, ";
+        std::cout << points3D[3*i + 1] << "f, ";
+        std::cout << points3D[3*i + 2] << "f,\n"; 
+    }
+    std::cout << "};" << std::endl;
 }
 
 /**
@@ -125,26 +138,7 @@ int main(int, char**) {
     glViewport(0, 0, WIDTH, HEIGHT);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);  
 
-    float points3D[3 * NUM_POINTS];
-    TwoDPoint * points2D = new TwoDPoint[NUM_POINTS];
-    populate2Darray(points2D);
-    for (int i = 0; i < NUM_POINTS; i++) {
-        float u = points2D[i].u;
-        float v = points2D[i].v;
-
-        points3D[3*i] = cos(u) * cos(v);
-        points3D[3*i+1] = sin(u) * cos(v);
-        points3D[3*i+2] = sin(v);
-    }
-
-    delete points2D;
-    points2D = NULL;
-
-    float vertices[] = {
-        -0.79713667f, -0.5f, 0.0f,
-        0.5f, -0.5f, 0.0f,
-        0.0f,  0.5f, 0.0f
-    };
+    populate3Darray();
 
     // Set up the vertex shader
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -179,14 +173,13 @@ int main(int, char**) {
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(float) * NUM_POINTS, points3D, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), NULL);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, NULL);
     glEnableVertexAttribArray(0);
-
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(VAO);
 
-    glPointSize(2.0);
+    glPointSize(2.0f);
     // Main loop
     while (!glfwWindowShouldClose(window)) {
         // Process input
@@ -197,7 +190,7 @@ int main(int, char**) {
 
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO);
-        glDrawArrays(GL_POINTS, 0, 3);
+        glDrawArrays(GL_POINTS, 0, NUM_POINTS);
 
         // Check and call events and swap the buffers
         glfwPollEvents();

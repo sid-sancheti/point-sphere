@@ -8,7 +8,8 @@
 #define NUM_POINTS 700
 #define ESPILON 0.0001
 
-using namespace std;
+#define HEIGHT 400
+#define WIDTH 640
 
 typedef struct {
     float u, v;
@@ -72,7 +73,7 @@ unsigned int compileShader(unsigned int type, const char* source) {
     glGetShaderiv(id, GL_COMPILE_STATUS, &success);
     if (!success) {
         glGetShaderInfoLog(id, 512, nullptr, infoLog);
-        cerr << "ERROR::SHADER::COMPILATION_FAILED\n" << infoLog << endl;
+        std::cerr << "ERROR::SHADER::COMPILATION_FAILED\n" << infoLog << std::endl;
     }
     return id;
 }
@@ -96,13 +97,29 @@ unsigned int createShaderProgram(const char* vertexShaderSource, const char* fra
     glGetProgramiv(program, GL_LINK_STATUS, &success);
     if (!success) {
         glGetProgramInfoLog(program, 512, nullptr, infoLog);
-        cerr << "ERROR::PROGRAM::LINKING_FAILED\n" << infoLog << endl;
+        std::cerr << "ERROR::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
     }
     
     glDeleteShader(vs);
     glDeleteShader(fs);
     
     return program;
+}
+
+/**
+ * Callback function: window resize
+ */
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+    glViewport(0, 0, width, height);
+} /* framebuffer_size_callback() */
+
+/**
+ * Callback function: Keyboard input
+ * Process input from the user
+ */
+void processInput(GLFWwindow *window) {
+    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
 }
 
 /**
@@ -113,7 +130,7 @@ unsigned int createShaderProgram(const char* vertexShaderSource, const char* fra
 int main(int, char**) {
     GLFWwindow * window = NULL;
     if (!glfwInit()) {
-        cerr << "Issue with inializing glfw" << endl;
+        std::cerr << "Issue with inializing glfw" << std::endl;
         return -1;
     }
 
@@ -122,92 +139,44 @@ int main(int, char**) {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    window = glfwCreateWindow(640, 400, "point-sphere", NULL, NULL);
+    window = glfwCreateWindow(WIDTH, HEIGHT, "point-sphere", NULL, NULL);
     if (window == NULL) {
         glfwTerminate();
-        cerr << "Could not create window" << endl;
+        std::cerr << "Failed to create GLFW window" << std::endl;
         return -1;
     }
-
     glfwMakeContextCurrent(window);
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        cerr << "Could not load OpenGL" << endl;
+        std::cerr << "Failed to initialize GLAD" << std::endl;
         glfwTerminate();
         return -1;
     }
 
     // Set the viewport
-    glViewport(0, 0, 640, 400);
+    glViewport(0, 0, WIDTH, HEIGHT);
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);  
 
-    // Define your vertex and fragment shaders
-    const char* vertexShaderSource = R"glsl(
-        #version 330 core
-        layout (location = 0) in vec3 aPos;
-        void main() {
-            gl_Position = vec4(aPos, 1.0);
-        }
-    )glsl";
-
-    const char* fragmentShaderSource = R"glsl(
-        #version 330 core
-        out vec4 FragColor;
-        void main() {
-            FragColor = vec4(1.0, 1.0, 1.0, 1.0); // White color
-        }
-    )glsl";
-
-    unsigned int shaderProgram = createShaderProgram(vertexShaderSource, fragmentShaderSource);
-
-    // Populate the 3D points array
     populate3Darray();
 
-    // Generate a VAO and VBO
-    unsigned int VAO, VBO;
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
+    glClearColor(0.5f, 0.0f, 0.2f, 1.0f);
+    
+    glDisable(GL_DEPTH_TEST);
 
-    // Bind VAO
-    glBindVertexArray(VAO);
-
-    // Bind VBO, send points to GPU
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(points3D), points3D, GL_STATIC_DRAW);
-
-    // Tell OpenGL how to interpret the data in the VBO
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-
-    // Unbind the VAO (optional, for safety)
-    glBindBuffer(GL_ARRAY_BUFFER, 0); 
-    glBindVertexArray(0); 
-
-    // Enable point size
-    glPointSize(1.0f);  // Makes the points larger
-
+    
     // Main loop
     while (!glfwWindowShouldClose(window)) {
-        glfwPollEvents();
+        // Process input
+        processInput(window);
 
         // Render
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // Use the shader program
-        glUseProgram(shaderProgram);
-
-        // Bind the VAO and draw points
-        glBindVertexArray(VAO);
-        glDrawArrays(GL_POINTS, 0, NUM_POINTS);  // Draw all 700 points
-
-        // Swap buffers
+        // Check and call events and swap the buffers
+        glfwPollEvents();
         glfwSwapBuffers(window);
     }
 
-    // Cleanup
-    glDeleteVertexArrays(1, &VAO);
-    glDeleteBuffers(1, &VBO);
-    glDeleteProgram(shaderProgram);
-
     glfwTerminate();
     return 0;
-}
+} /* main() */

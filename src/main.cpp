@@ -5,11 +5,11 @@
 #include "glad.h"
 #include <GLFW/glfw3.h>
 
-#define NUM_POINTS 700
+#define NUM_POINTS 2000
 #define ESPILON 0.0001
 
-#define HEIGHT 400
-#define WIDTH 640
+#define HEIGHT 405
+#define WIDTH 440
 
 const char *vertexShaderSource = "#version 330 core\n"
     "layout (location = 0) in vec3 aPos;\n"
@@ -27,15 +27,30 @@ const char *fragmentShaderSource = "#version 330 core\n"
 
 // w is only used for debugging purposes; it is always 1.0
 typedef struct {
-    float u, v, w;
-} TwoDPoint;
+    float x, y;
+} vec2;
 
 typedef struct {
     float x, y, z;
-} ThreeDPoint;
+} vec3;
 
-float points3D[3 * NUM_POINTS];
+vec3 points3D[3 * NUM_POINTS];
 
+/**
+ * Generates a spiral of points in 3D space
+ * 
+ * @param points2D The 2D array of points to populate; z is always 0
+ * @param numPoints The number of points to generate
+ */
+void generateSpiral(vec3 * points2D, int numPoints) {
+    float s = -1.0f;
+    const float step_size = 2.0f /(numPoints - 1);
+    for (int i = 0; i < numPoints; i++, s += step_size) {
+        points2D[i].x = s;
+        points2D[i].y = M_PI/2 * copysignf(1.0f, s) * (1 - sqrt(1 - abs(s)));
+        points2D[i].z = 0.0f;
+    }
+}
 /**
  * Populates the 2D array of points using the formula
  * Derived from this paper: https://scholar.rose-hulman.edu/cgi/viewcontent.cgi?article=1387&context=rhumj
@@ -44,16 +59,14 @@ float points3D[3 * NUM_POINTS];
  * @see #populate3Darray()
  */
 
-void populate2Darray(TwoDPoint * points2D) {
+void populate2Darray(vec2 * points2D) {
     float s = -1 + 1.0f /(NUM_POINTS - 1);
     const float step_size = (2.0f - 2.0f/(NUM_POINTS - 1))/(NUM_POINTS - 1);
-    const float x = 0.12 + 1.1999 * NUM_POINTS;
+    const float x = 0.1 + 1.2 * NUM_POINTS;
 
-    for (int i = 0; i < NUM_POINTS; i++) {
-        points2D[i].u = s * x;
-        points2D[i].v = M_PI/2 + copysignf(1.0f, s) * (1 - sqrt(1 - abs(s)));
-        points2D[i].w = 1.0f;
-        s += step_size;
+    for (int i = 0; i < NUM_POINTS; i++, s += step_size) {
+        points2D[i].x = s * x;
+        points2D[i].y = M_PI/2 * copysignf(1.0f, s) * (1 - sqrt(1 - abs(s)));
     }
 } /* populate2Darray() */
 
@@ -64,15 +77,15 @@ void populate2Darray(TwoDPoint * points2D) {
  */
 
 void populate3Darray() {
-    TwoDPoint points2D[NUM_POINTS];
+    vec2 points2D[NUM_POINTS];
     populate2Darray(points2D);
     for (int i = 0; i < NUM_POINTS; i++) {
-        float u = points2D[i].u;
-        float v = points2D[i].v;
+        float u = points2D[i].x;
+        float v = points2D[i].y;
 
-        points3D[3*i] = sin(u) * cos(v);
-        points3D[3*i+1] = sin(u) * sin(v);
-        points3D[3*i+2] = cos(u);
+        points3D[i].x = cos(u) * cos(v);
+        points3D[i].y = sin(u) * cos(v);
+        points3D[i].z = sin(v);
     }
 }
 
@@ -80,9 +93,9 @@ void print3D() {
     std::cout << "float points3DInline[] = {" << std::endl;
     for (int i = 0; i < NUM_POINTS; i++) {
         std::cout << "\t";
-        std::cout << points3D[3*i] << "f, ";
-        std::cout << points3D[3*i + 1] << "f, ";
-        std::cout << points3D[3*i + 2] << "f,\n"; 
+        std::cout << points3D[i].x << "f, ";
+        std::cout << points3D[i].y << "f, ";
+        std::cout << points3D[i].z << "f,\n"; 
     }
     std::cout << "};" << std::endl;
 }
@@ -138,6 +151,14 @@ int main(int, char**) {
     glViewport(0, 0, WIDTH, HEIGHT);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);  
 
+    // TwoDPoint points2D[NUM_POINTS];
+    // populate2Darray(points2D);
+    // for (int i = 0; i < NUM_POINTS; i++) {
+    //     points2D[i].u /= 840.0f;
+    // }
+    vec3 spiralPoints[NUM_POINTS];
+    generateSpiral(spiralPoints, NUM_POINTS);
+    
     populate3Darray();
 
     // Set up the vertex shader
@@ -174,8 +195,8 @@ int main(int, char**) {
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(float) * NUM_POINTS, points3D, GL_STATIC_DRAW);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), NULL);
-
     glEnableVertexAttribArray(0);
+    
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(VAO);
 
@@ -199,5 +220,4 @@ int main(int, char**) {
 
     glfwTerminate();
     return 0;
-    
 } /* main() */

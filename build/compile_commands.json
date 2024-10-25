@@ -1,13 +1,13 @@
 [
 {
   "directory": "/home/sancheti/comsci/point-sphere/build",
-  "command": "/usr/bin/c++   -g -o CMakeFiles/point-sphere.dir/src/main.cpp.o -c /home/sancheti/comsci/point-sphere/src/main.cpp",
+  "command": "/usr/bin/c++  -I/home/sancheti/comsci/point-sphere/. -g -o CMakeFiles/point-sphere.dir/src/main.cpp.o -c /home/sancheti/comsci/point-sphere/src/main.cpp",
   "file": "/home/sancheti/comsci/point-sphere/src/main.cpp",
   "output": "CMakeFiles/point-sphere.dir/src/main.cpp.o"
 },
 {
   "directory": "/home/sancheti/comsci/point-sphere/build",
-  "command": "/usr/bin/cc   -g -o CMakeFiles/point-sphere.dir/src/glad.c.o -c /home/sancheti/comsci/point-sphere/src/glad.c",
+  "command": "/usr/bin/cc  -I/home/sancheti/comsci/point-sphere/. -g -o CMakeFiles/point-sphere.dir/src/glad.c.o -c /home/sancheti/comsci/point-sphere/src/glad.c",
   "file": "/home/sancheti/comsci/point-sphere/src/glad.c",
   "output": "CMakeFiles/point-sphere.dir/src/glad.c.o"
 }

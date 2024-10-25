@@ -4,4 +4,5 @@ My goal is to create a point sphere using openGL that I can display on my websit
 ## Using OpenGL
 1. Set up OpenGL on my machine and get it running.
 2. Implement the formula from https://scholar.rose-hulman.edu/cgi/viewcontent.cgi?article=1387&context=rhumj
-3. Migrate the code onto my website
+3. Set up glm to perform tranformations and rotations on the sphere.
+4. Migrate the code onto my website

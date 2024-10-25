@@ -83,30 +83,30 @@ CMakeFiles/point-sphere.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/point-sphere.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sancheti/comsci/point-sphere/src/main.cpp -o CMakeFiles/point-sphere.dir/src/main.cpp.s
 
-CMakeFiles/point-sphere.dir/src/glad.c.o: CMakeFiles/point-sphere.dir/flags.make
-CMakeFiles/point-sphere.dir/src/glad.c.o: /home/sancheti/comsci/point-sphere/src/glad.c
-CMakeFiles/point-sphere.dir/src/glad.c.o: CMakeFiles/point-sphere.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sancheti/comsci/point-sphere/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/point-sphere.dir/src/glad.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/point-sphere.dir/src/glad.c.o -MF CMakeFiles/point-sphere.dir/src/glad.c.o.d -o CMakeFiles/point-sphere.dir/src/glad.c.o -c /home/sancheti/comsci/point-sphere/src/glad.c
+CMakeFiles/point-sphere.dir/include/glad.c.o: CMakeFiles/point-sphere.dir/flags.make
+CMakeFiles/point-sphere.dir/include/glad.c.o: /home/sancheti/comsci/point-sphere/include/glad.c
+CMakeFiles/point-sphere.dir/include/glad.c.o: CMakeFiles/point-sphere.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sancheti/comsci/point-sphere/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/point-sphere.dir/include/glad.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/point-sphere.dir/include/glad.c.o -MF CMakeFiles/point-sphere.dir/include/glad.c.o.d -o CMakeFiles/point-sphere.dir/include/glad.c.o -c /home/sancheti/comsci/point-sphere/include/glad.c
 
-CMakeFiles/point-sphere.dir/src/glad.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/point-sphere.dir/src/glad.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sancheti/comsci/point-sphere/src/glad.c > CMakeFiles/point-sphere.dir/src/glad.c.i
+CMakeFiles/point-sphere.dir/include/glad.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/point-sphere.dir/include/glad.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sancheti/comsci/point-sphere/include/glad.c > CMakeFiles/point-sphere.dir/include/glad.c.i
 
-CMakeFiles/point-sphere.dir/src/glad.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/point-sphere.dir/src/glad.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sancheti/comsci/point-sphere/src/glad.c -o CMakeFiles/point-sphere.dir/src/glad.c.s
+CMakeFiles/point-sphere.dir/include/glad.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/point-sphere.dir/include/glad.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sancheti/comsci/point-sphere/include/glad.c -o CMakeFiles/point-sphere.dir/include/glad.c.s
 
 # Object files for target point-sphere
 point__sphere_OBJECTS = \
 "CMakeFiles/point-sphere.dir/src/main.cpp.o" \
-"CMakeFiles/point-sphere.dir/src/glad.c.o"
+"CMakeFiles/point-sphere.dir/include/glad.c.o"
 
 # External object files for target point-sphere
 point__sphere_EXTERNAL_OBJECTS =
 
 point-sphere: CMakeFiles/point-sphere.dir/src/main.cpp.o
-point-sphere: CMakeFiles/point-sphere.dir/src/glad.c.o
+point-sphere: CMakeFiles/point-sphere.dir/include/glad.c.o
 point-sphere: CMakeFiles/point-sphere.dir/build.make
 point-sphere: /usr/lib/x86_64-linux-gnu/libGLX.so
 point-sphere: /usr/lib/x86_64-linux-gnu/libOpenGL.so

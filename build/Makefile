@@ -129,29 +129,29 @@ point-sphere/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/point-sphere.dir/build.make CMakeFiles/point-sphere.dir/build
 .PHONY : point-sphere/fast
 
-src/glad.o: src/glad.c.o
-.PHONY : src/glad.o
+include/glad.o: include/glad.c.o
+.PHONY : include/glad.o
 
 # target to build an object file
-src/glad.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/point-sphere.dir/build.make CMakeFiles/point-sphere.dir/src/glad.c.o
-.PHONY : src/glad.c.o
+include/glad.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/point-sphere.dir/build.make CMakeFiles/point-sphere.dir/include/glad.c.o
+.PHONY : include/glad.c.o
 
-src/glad.i: src/glad.c.i
-.PHONY : src/glad.i
+include/glad.i: include/glad.c.i
+.PHONY : include/glad.i
 
 # target to preprocess a source file
-src/glad.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/point-sphere.dir/build.make CMakeFiles/point-sphere.dir/src/glad.c.i
-.PHONY : src/glad.c.i
+include/glad.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/point-sphere.dir/build.make CMakeFiles/point-sphere.dir/include/glad.c.i
+.PHONY : include/glad.c.i
 
-src/glad.s: src/glad.c.s
-.PHONY : src/glad.s
+include/glad.s: include/glad.c.s
+.PHONY : include/glad.s
 
 # target to generate assembly for a file
-src/glad.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/point-sphere.dir/build.make CMakeFiles/point-sphere.dir/src/glad.c.s
-.PHONY : src/glad.c.s
+include/glad.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/point-sphere.dir/build.make CMakeFiles/point-sphere.dir/include/glad.c.s
+.PHONY : include/glad.c.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -186,9 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... point-sphere"
-	@echo "... src/glad.o"
-	@echo "... src/glad.i"
-	@echo "... src/glad.s"
+	@echo "... include/glad.o"
+	@echo "... include/glad.i"
+	@echo "... include/glad.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

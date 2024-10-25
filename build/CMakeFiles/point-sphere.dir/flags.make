@@ -5,13 +5,13 @@
 # compile CXX with /usr/bin/c++
 C_DEFINES = 
 
-C_INCLUDES = -I/home/sancheti/comsci/point-sphere/.
+C_INCLUDES = -I/home/sancheti/comsci/point-sphere/./include
 
 C_FLAGS = -g
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/sancheti/comsci/point-sphere/.
+CXX_INCLUDES = -I/home/sancheti/comsci/point-sphere/./include
 
 CXX_FLAGS = -g
 

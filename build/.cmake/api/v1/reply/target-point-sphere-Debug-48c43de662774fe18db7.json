@@ -82,7 +82,7 @@
 			[
 				{
 					"backtrace" : 7,
-					"path" : "/home/sancheti/comsci/point-sphere/."
+					"path" : "/home/sancheti/comsci/point-sphere/./include"
 				}
 			],
 			"language" : "CXX",
@@ -102,7 +102,7 @@
 			[
 				{
 					"backtrace" : 7,
-					"path" : "/home/sancheti/comsci/point-sphere/."
+					"path" : "/home/sancheti/comsci/point-sphere/./include"
 				}
 			],
 			"language" : "C",
@@ -172,7 +172,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 1,
-			"path" : "src/glad.c",
+			"path" : "include/glad.c",
 			"sourceGroupIndex" : 0
 		}
 	],

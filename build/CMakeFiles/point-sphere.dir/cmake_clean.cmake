@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/point-sphere.dir/src/glad.c.o"
-  "CMakeFiles/point-sphere.dir/src/glad.c.o.d"
+  "CMakeFiles/point-sphere.dir/include/glad.c.o"
+  "CMakeFiles/point-sphere.dir/include/glad.c.o.d"
   "CMakeFiles/point-sphere.dir/src/main.cpp.o"
   "CMakeFiles/point-sphere.dir/src/main.cpp.o.d"
   "point-sphere"

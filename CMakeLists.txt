@@ -5,7 +5,7 @@ find_package(OpenGL REQUIRED)
 
 add_executable(${PROJECT_NAME} 
     src/main.cpp 
-    src/glad.c
+    include/glad.c
 )
 
 target_link_libraries(${PROJECT_NAME}
@@ -13,4 +13,4 @@ target_link_libraries(${PROJECT_NAME}
     OpenGL::GL
 )
 
-target_include_directories(${PROJECT_NAME} PRIVATE .)
+target_include_directories(${PROJECT_NAME} PRIVATE ./include)

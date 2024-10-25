@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/sancheti/comsci/point-sphere/src/glad.c" "CMakeFiles/point-sphere.dir/src/glad.c.o" "gcc" "CMakeFiles/point-sphere.dir/src/glad.c.o.d"
+  "/home/sancheti/comsci/point-sphere/include/glad.c" "CMakeFiles/point-sphere.dir/include/glad.c.o" "gcc" "CMakeFiles/point-sphere.dir/include/glad.c.o.d"
   "/home/sancheti/comsci/point-sphere/src/main.cpp" "CMakeFiles/point-sphere.dir/src/main.cpp.o" "gcc" "CMakeFiles/point-sphere.dir/src/main.cpp.o.d"
   )
 

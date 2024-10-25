@@ -2,10 +2,10 @@
 #include <math.h>
 
 #define GLFW_INCLUDE_NONE
-#include "glad.h"
+#include <glad.h>
 #include <GLFW/glfw3.h>
 
-#include "glm/glm.hpp"
+#include <glm/glm.hpp>
 
 #define NUM_POINTS 2000
 #define ESPILON 0.0001

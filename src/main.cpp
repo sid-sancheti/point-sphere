@@ -6,6 +6,8 @@
 #include <GLFW/glfw3.h>
 
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #define NUM_POINTS 2000
 #define ESPILON 0.0001
@@ -16,9 +18,10 @@
 
 const char *vertexShaderSource = "#version 330 core\n"
     "layout (location = 0) in vec3 aPos;\n"
+    "uniform mat4 rotation;\n"
     "void main()\n"
     "{\n"
-    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+    "   gl_Position = rotation * vec4(aPos, 1.0);\n"
     "}\0";
 
 const char *fragmentShaderSource = "#version 330 core\n"
@@ -41,6 +44,7 @@ vec3local points3D[3 * NUM_POINTS];
 
 /**
  * Generates a spiral of points in 3D space
+ * NOT USED
  * 
  * @param points2D The 2D array of points to populate; z is always 0
  * @param numPoints The number of points to generate
@@ -143,15 +147,9 @@ int main(int, char**) {
     glViewport(0, 0, WIDTH, HEIGHT);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);  
 
-    // TwoDPoint points2D[NUM_POINTS];
-    // populate2Darray(points2D);
-    // for (int i = 0; i < NUM_POINTS; i++) {
-    //     points2D[i].u /= 840.0f;
-    // }
-    vec3local spiralPoints[NUM_POINTS];
-    generateSpiral(spiralPoints, NUM_POINTS);
-    
     populate3Darray();
+
+    glEnable(GL_DEPTH_TEST);  
 
     // Set up the vertex shader
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -169,8 +167,6 @@ int main(int, char**) {
     glAttachShader(shaderProgram, vertexShader);
     glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
-
-    glUseProgram(shaderProgram);
 
     // Free up unnecessary memory
     glDeleteShader(vertexShader);
@@ -199,9 +195,20 @@ int main(int, char**) {
         processInput(window);
 
         // Render
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+        // Alter the radians value to increase or decrease the speed of rotation
+        glm::mat4 rotation = glm::rotate(
+            glm::mat4(1.0f),
+            (float)glfwGetTime(),
+            glm::vec3(0.53452f, 0.80178f, 0.26726f)
+        );
+
+        // Passing the rotation matrix to the shader
+        int rotationLoc = glGetUniformLocation(shaderProgram, "rotation");
         glUseProgram(shaderProgram);
+        glUniformMatrix4fv(rotationLoc, 1, GL_FALSE, glm::value_ptr(rotation));
+
         glBindVertexArray(VAO);
         glDrawArrays(GL_POINTS, 0, NUM_POINTS);
 

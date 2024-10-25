@@ -330,4 +330,56 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: \
  /home/sancheti/comsci/point-sphere/./include/glm/detail/type_half.hpp \
  /home/sancheti/comsci/point-sphere/./include/glm/detail/type_half.inl \
  /home/sancheti/comsci/point-sphere/./include/glm/integer.hpp \
- /home/sancheti/comsci/point-sphere/./include/glm/detail/func_integer.inl
+ /home/sancheti/comsci/point-sphere/./include/glm/detail/func_integer.inl \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/matrix_transform.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../ext/matrix_projection.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../ext/../gtc/constants.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../ext/../gtc/../ext/scalar_constants.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../ext/../gtc/../ext/../detail/setup.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../ext/../gtc/../ext/scalar_constants.inl \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../ext/../gtc/constants.inl \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../ext/matrix_projection.inl \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../ext/matrix_clip_space.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../ext/matrix_clip_space.inl \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../ext/matrix_transform.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../ext/matrix_transform.inl \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/matrix_transform.inl \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/type_ptr.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/quaternion.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/vector_relational.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/vector_relational.inl \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/../detail/type_float.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/../detail/setup.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/quaternion_common.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/../ext/quaternion_geometric.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/../ext/quaternion_geometric.inl \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/quaternion_common.inl \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/quaternion_float.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/../detail/type_quat.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/../detail/../ext/quaternion_relational.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/../detail/../ext/quaternion_relational.inl \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/../detail/type_quat.inl \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/quaternion_float_precision.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/quaternion_double.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/quaternion_double_precision.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/quaternion_trigonometric.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/quaternion_trigonometric.inl \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/quaternion_transform.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/quaternion_transform.inl \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/quaternion.inl \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/epsilon.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../detail/setup.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/epsilon.inl \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/vec1.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/vector_bool1.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/vector_bool1_precision.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/vector_float1.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/vector_float1_precision.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/vector_double1.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/vector_double1_precision.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/vector_int1.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/vector_int1_sized.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/vector_uint1.hpp \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/vector_uint1_sized.hpp \
+ /usr/include/c++/13/cstring /usr/include/string.h /usr/include/strings.h \
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/type_ptr.inl

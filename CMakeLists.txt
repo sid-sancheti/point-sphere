@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
-project(point-sphere VERSION 0.1.0)
+project(point-sphere VERSION 0.1.1)
 
 find_package(OpenGL REQUIRED)
 

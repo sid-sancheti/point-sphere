@@ -7,6 +7,7 @@
 
 #define NUM_POINTS 2000
 #define ESPILON 0.0001
+#define SCALE 0.9
 
 #define HEIGHT 405
 #define WIDTH 440
@@ -28,13 +29,13 @@ const char *fragmentShaderSource = "#version 330 core\n"
 // w is only used for debugging purposes; it is always 1.0
 typedef struct {
     float x, y;
-} vec2;
+} vec2local;
 
 typedef struct {
     float x, y, z;
-} vec3;
+} vec3local;
 
-vec3 points3D[3 * NUM_POINTS];
+vec3local points3D[3 * NUM_POINTS];
 
 /**
  * Generates a spiral of points in 3D space
@@ -42,7 +43,7 @@ vec3 points3D[3 * NUM_POINTS];
  * @param points2D The 2D array of points to populate; z is always 0
  * @param numPoints The number of points to generate
  */
-void generateSpiral(vec3 * points2D, int numPoints) {
+void generateSpiral(vec3local * points2D, int numPoints) {
     float s = -1.0f;
     const float step_size = 2.0f /(numPoints - 1);
     for (int i = 0; i < numPoints; i++, s += step_size) {
@@ -59,7 +60,7 @@ void generateSpiral(vec3 * points2D, int numPoints) {
  * @see #populate3Darray()
  */
 
-void populate2Darray(vec2 * points2D) {
+void populate2Darray(vec2local * points2D) {
     float s = -1 + 1.0f /(NUM_POINTS - 1);
     const float step_size = (2.0f - 2.0f/(NUM_POINTS - 1))/(NUM_POINTS - 1);
     const float x = 0.1 + 1.2 * NUM_POINTS;
@@ -77,27 +78,16 @@ void populate2Darray(vec2 * points2D) {
  */
 
 void populate3Darray() {
-    vec2 points2D[NUM_POINTS];
+    vec2local points2D[NUM_POINTS];
     populate2Darray(points2D);
     for (int i = 0; i < NUM_POINTS; i++) {
         float u = points2D[i].x;
         float v = points2D[i].y;
 
-        points3D[i].x = cos(u) * cos(v);
-        points3D[i].y = sin(u) * cos(v);
-        points3D[i].z = sin(v);
+        points3D[i].x = SCALE * cos(u) * cos(v);
+        points3D[i].y = SCALE * sin(u) * cos(v);
+        points3D[i].z = SCALE * sin(v);
     }
-}
-
-void print3D() {
-    std::cout << "float points3DInline[] = {" << std::endl;
-    for (int i = 0; i < NUM_POINTS; i++) {
-        std::cout << "\t";
-        std::cout << points3D[i].x << "f, ";
-        std::cout << points3D[i].y << "f, ";
-        std::cout << points3D[i].z << "f,\n"; 
-    }
-    std::cout << "};" << std::endl;
 }
 
 /**
@@ -156,7 +146,7 @@ int main(int, char**) {
     // for (int i = 0; i < NUM_POINTS; i++) {
     //     points2D[i].u /= 840.0f;
     // }
-    vec3 spiralPoints[NUM_POINTS];
+    vec3local spiralPoints[NUM_POINTS];
     generateSpiral(spiralPoints, NUM_POINTS);
     
     populate3Darray();
@@ -218,6 +208,10 @@ int main(int, char**) {
         glfwSwapBuffers(window);
     }
 
+    // Clean up
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glDeleteProgram(shaderProgram);
     glfwTerminate();
     return 0;
 } /* main() */

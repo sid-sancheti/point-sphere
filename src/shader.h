@@ -1,18 +1,20 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-#include <glad/glad.h>
+#include <glad.h>
 
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <iostream>
 
+#include <filesystem>
+
 class Shader
 {
 public:
     unsigned int ID;
-    
+
     // constructor generates the shader on the fly
     Shader(const char* vertexPath, const char* fragmentPath)
     {
@@ -26,6 +28,9 @@ public:
         fShaderFile.exceptions (std::ifstream::failbit | std::ifstream::badbit);
         try 
         {
+            std::cout << std::filesystem::exists(vertexPath) << std::endl;
+            std::cout << std::filesystem::exists(fragmentPath) << std::endl;
+
             // open files
             vShaderFile.open(vertexPath);
             fShaderFile.open(fragmentPath);
@@ -87,6 +92,15 @@ public:
     void setFloat(const std::string &name, float value) const
     { 
         glUniform1f(glGetUniformLocation(ID, name.c_str()), value); 
+    }
+    void setMat4(const std::string &name, const float *value) const
+    {
+        glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, value);
+    }
+
+    void terminate()
+    {
+        glDeleteProgram(ID);
     }
 
 private:

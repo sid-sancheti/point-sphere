@@ -264,6 +264,7 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
   /home/sancheti/comsci/point-sphere/include/glm/vec3.hpp \
   /home/sancheti/comsci/point-sphere/include/glm/vec4.hpp \
   /home/sancheti/comsci/point-sphere/include/khrplatform.h \
+  /home/sancheti/comsci/point-sphere/src/shader.h \
   /usr/include/GLFW/glfw3.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
@@ -272,6 +273,7 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
   /usr/include/c++/13/backward/binders.h \
   /usr/include/c++/13/bit \
   /usr/include/c++/13/bits/alloc_traits.h \
+  /usr/include/c++/13/bits/allocated_ptr.h \
   /usr/include/c++/13/bits/allocator.h \
   /usr/include/c++/13/bits/basic_ios.h \
   /usr/include/c++/13/bits/basic_ios.tcc \
@@ -279,6 +281,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
   /usr/include/c++/13/bits/basic_string.tcc \
   /usr/include/c++/13/bits/char_traits.h \
   /usr/include/c++/13/bits/charconv.h \
+  /usr/include/c++/13/bits/chrono.h \
+  /usr/include/c++/13/bits/codecvt.h \
   /usr/include/c++/13/bits/concept_check.h \
   /usr/include/c++/13/bits/cpp_type_traits.h \
   /usr/include/c++/13/bits/cxxabi_forced.h \
@@ -286,6 +290,11 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
   /usr/include/c++/13/bits/exception.h \
   /usr/include/c++/13/bits/exception_defines.h \
   /usr/include/c++/13/bits/exception_ptr.h \
+  /usr/include/c++/13/bits/fs_dir.h \
+  /usr/include/c++/13/bits/fs_fwd.h \
+  /usr/include/c++/13/bits/fs_ops.h \
+  /usr/include/c++/13/bits/fs_path.h \
+  /usr/include/c++/13/bits/fstream.tcc \
   /usr/include/c++/13/bits/functexcept.h \
   /usr/include/c++/13/bits/functional_hash.h \
   /usr/include/c++/13/bits/hash_bytes.h \
@@ -294,8 +303,11 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
   /usr/include/c++/13/bits/istream.tcc \
   /usr/include/c++/13/bits/locale_classes.h \
   /usr/include/c++/13/bits/locale_classes.tcc \
+  /usr/include/c++/13/bits/locale_conv.h \
   /usr/include/c++/13/bits/locale_facets.h \
   /usr/include/c++/13/bits/locale_facets.tcc \
+  /usr/include/c++/13/bits/locale_facets_nonio.h \
+  /usr/include/c++/13/bits/locale_facets_nonio.tcc \
   /usr/include/c++/13/bits/localefwd.h \
   /usr/include/c++/13/bits/memory_resource.h \
   /usr/include/c++/13/bits/memoryfwd.h \
@@ -304,13 +316,18 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
   /usr/include/c++/13/bits/new_allocator.h \
   /usr/include/c++/13/bits/ostream.tcc \
   /usr/include/c++/13/bits/ostream_insert.h \
+  /usr/include/c++/13/bits/parse_numbers.h \
   /usr/include/c++/13/bits/postypes.h \
   /usr/include/c++/13/bits/predefined_ops.h \
   /usr/include/c++/13/bits/ptr_traits.h \
+  /usr/include/c++/13/bits/quoted_string.h \
   /usr/include/c++/13/bits/range_access.h \
   /usr/include/c++/13/bits/refwrap.h \
   /usr/include/c++/13/bits/requires_hosted.h \
+  /usr/include/c++/13/bits/shared_ptr.h \
+  /usr/include/c++/13/bits/shared_ptr_base.h \
   /usr/include/c++/13/bits/specfun.h \
+  /usr/include/c++/13/bits/sstream.tcc \
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/bits/stl_algobase.h \
   /usr/include/c++/13/bits/stl_construct.h \
@@ -323,6 +340,7 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
   /usr/include/c++/13/bits/streambuf_iterator.h \
   /usr/include/c++/13/bits/string_view.tcc \
   /usr/include/c++/13/bits/stringfwd.h \
+  /usr/include/c++/13/bits/unique_ptr.h \
   /usr/include/c++/13/bits/uses_allocator.h \
   /usr/include/c++/13/bits/uses_allocator_args.h \
   /usr/include/c++/13/bits/utility.h \
@@ -333,31 +351,41 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
   /usr/include/c++/13/climits \
   /usr/include/c++/13/clocale \
   /usr/include/c++/13/cmath \
+  /usr/include/c++/13/codecvt \
   /usr/include/c++/13/cstddef \
   /usr/include/c++/13/cstdint \
   /usr/include/c++/13/cstdio \
   /usr/include/c++/13/cstdlib \
   /usr/include/c++/13/cstring \
+  /usr/include/c++/13/ctime \
   /usr/include/c++/13/cwchar \
   /usr/include/c++/13/cwctype \
   /usr/include/c++/13/debug/assertions.h \
   /usr/include/c++/13/debug/debug.h \
   /usr/include/c++/13/exception \
+  /usr/include/c++/13/ext/aligned_buffer.h \
   /usr/include/c++/13/ext/alloc_traits.h \
   /usr/include/c++/13/ext/atomicity.h \
+  /usr/include/c++/13/ext/concurrence.h \
   /usr/include/c++/13/ext/numeric_traits.h \
   /usr/include/c++/13/ext/string_conversions.h \
   /usr/include/c++/13/ext/type_traits.h \
+  /usr/include/c++/13/filesystem \
+  /usr/include/c++/13/fstream \
   /usr/include/c++/13/initializer_list \
+  /usr/include/c++/13/iomanip \
   /usr/include/c++/13/ios \
   /usr/include/c++/13/iosfwd \
   /usr/include/c++/13/iostream \
   /usr/include/c++/13/istream \
   /usr/include/c++/13/limits \
+  /usr/include/c++/13/locale \
   /usr/include/c++/13/math.h \
   /usr/include/c++/13/new \
   /usr/include/c++/13/ostream \
   /usr/include/c++/13/pstl/pstl_config.h \
+  /usr/include/c++/13/ratio \
+  /usr/include/c++/13/sstream \
   /usr/include/c++/13/stdexcept \
   /usr/include/c++/13/streambuf \
   /usr/include/c++/13/string \
@@ -383,6 +411,7 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
   /usr/include/errno.h \
   /usr/include/features-time64.h \
   /usr/include/features.h \
+  /usr/include/libintl.h \
   /usr/include/limits.h \
   /usr/include/linux/errno.h \
   /usr/include/linux/limits.h \
@@ -476,8 +505,10 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h \
+  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++allocator.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
+  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++locale.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/cpu_defines.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_base.h \
@@ -485,7 +516,9 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
   /usr/include/x86_64-linux-gnu/c++/13/bits/error_constants.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/gthr.h \
+  /usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
+  /usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs.h \
   /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -500,6 +533,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
   /usr/lib/gcc/x86_64-linux-gnu/13/include/syslimits.h
 
 
+/usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h:
+
 /usr/include/x86_64-linux-gnu/c++/13/bits/gthr.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/error_constants.h:
@@ -510,13 +545,13 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h:
 
+/usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h:
+
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
 /usr/include/x86_64-linux-gnu/bits/uio_lim.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/error_t.h:
 
@@ -542,8 +577,6 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /usr/include/x86_64-linux-gnu/asm/errno.h:
 
-/usr/include/wchar.h:
-
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
 
 /usr/include/time.h:
@@ -556,9 +589,13 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /usr/include/locale.h:
 
+/usr/include/libintl.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/13/include/float.h:
 
 /usr/include/ctype.h:
+
+/usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h:
 
 /usr/include/c++/13/typeinfo:
 
@@ -592,6 +629,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /usr/include/c++/13/math.h:
 
+/usr/include/c++/13/locale:
+
 /usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
 /usr/include/c++/13/limits:
@@ -610,6 +649,10 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /usr/include/c++/13/initializer_list:
 
+/usr/include/c++/13/fstream:
+
+/usr/include/c++/13/filesystem:
+
 /usr/include/c++/13/ext/type_traits.h:
 
 /usr/include/c++/13/ext/string_conversions.h:
@@ -619,6 +662,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 /usr/include/c++/13/ext/atomicity.h:
 
 /usr/include/c++/13/ext/alloc_traits.h:
+
+/usr/include/c++/13/ext/aligned_buffer.h:
 
 /usr/include/c++/13/exception:
 
@@ -632,6 +677,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /usr/include/c++/13/cstddef:
 
+/usr/include/c++/13/codecvt:
+
 /usr/include/c++/13/climits:
 
 /usr/include/c++/13/cerrno:
@@ -639,6 +686,10 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 /usr/include/c++/13/bits/uses_allocator_args.h:
 
 /usr/include/c++/13/bits/uses_allocator.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
+
+/usr/include/c++/13/bits/unique_ptr.h:
 
 /usr/include/c++/13/bits/stringfwd.h:
 
@@ -650,11 +701,17 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /usr/include/c++/13/bits/stl_algobase.h:
 
-/usr/include/c++/13/bits/std_abs.h:
+/usr/include/c++/13/bits/sstream.tcc:
 
 /usr/include/c++/13/bits/streambuf.tcc:
 
 /usr/include/c++/13/bits/specfun.h:
+
+/usr/include/wchar.h:
+
+/usr/include/c++/13/bits/shared_ptr_base.h:
+
+/usr/include/c++/13/bits/shared_ptr.h:
 
 /usr/include/c++/13/bits/refwrap.h:
 
@@ -662,9 +719,15 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /usr/include/c++/13/bits/range_access.h:
 
+/usr/include/c++/13/bits/quoted_string.h:
+
 /usr/include/c++/13/bits/predefined_ops.h:
 
 /usr/include/c++/13/bits/postypes.h:
+
+/usr/include/c++/13/bits/std_abs.h:
+
+/usr/include/c++/13/bits/parse_numbers.h:
 
 /usr/include/c++/13/bits/ostream_insert.h:
 
@@ -682,11 +745,25 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /usr/include/c++/13/bits/localefwd.h:
 
+/usr/include/c++/13/bits/locale_facets_nonio.tcc:
+
+/usr/include/c++/13/bits/locale_facets_nonio.h:
+
 /usr/include/c++/13/bits/locale_facets.tcc:
+
+/usr/include/c++/13/bits/locale_conv.h:
 
 /usr/include/c++/13/bits/istream.tcc:
 
 /usr/include/c++/13/bits/ios_base.h:
+
+/usr/include/c++/13/bits/fstream.tcc:
+
+/usr/include/c++/13/bits/fs_path.h:
+
+/usr/include/c++/13/bits/fs_ops.h:
+
+/usr/include/c++/13/bits/fs_fwd.h:
 
 /usr/include/c++/13/bits/exception.h:
 
@@ -700,6 +777,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /usr/include/c++/13/bits/concept_check.h:
 
+/usr/include/c++/13/bits/codecvt.h:
+
 /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_inline.h:
 
 /usr/include/c++/13/bits/char_traits.h:
@@ -709,6 +788,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 /usr/include/c++/13/bits/basic_ios.h:
 
 /usr/include/c++/13/bits/allocator.h:
+
+/usr/include/c++/13/bits/alloc_traits.h:
 
 /usr/include/x86_64-linux-gnu/bits/math-vector.h:
 
@@ -740,11 +821,15 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/matrix_float2x3_precision.hpp:
 
+/usr/include/c++/13/ctime:
+
 /home/sancheti/comsci/point-sphere/include/glm/ext/matrix_double4x4_precision.hpp:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h:
 
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/c++/13/ext/concurrence.h:
 
 /home/sancheti/comsci/point-sphere/include/glm/gtc/matrix_transform.inl:
 
@@ -866,6 +951,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/quaternion_relational.hpp:
 
+/usr/include/c++/13/sstream:
+
 /home/sancheti/comsci/point-sphere/include/glm/detail/type_mat3x4.inl:
 
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
@@ -875,6 +962,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 /usr/include/x86_64-linux-gnu/bits/time.h:
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
+
+/usr/include/c++/13/bits/chrono.h:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
@@ -895,6 +984,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 /home/sancheti/comsci/point-sphere/include/glm/geometric.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
+
+/usr/include/c++/13/iomanip:
 
 /usr/include/strings.h:
 
@@ -1026,6 +1117,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
+/usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h:
+
 /home/sancheti/comsci/point-sphere/include/glm/integer.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
@@ -1130,6 +1223,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /home/sancheti/comsci/point-sphere/include/glm/detail/type_vec4.inl:
 
+/usr/include/c++/13/bits/fs_dir.h:
+
 /home/sancheti/comsci/point-sphere/include/glm/ext/matrix_double2x2.hpp:
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/vector_bool1.hpp:
@@ -1171,6 +1266,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 /usr/include/c++/13/bits/ptr_traits.h:
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/vector_float2.hpp:
+
+/usr/include/c++/13/bits/allocated_ptr.h:
 
 /usr/include/c++/13/bit:
 
@@ -1296,9 +1393,9 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/vector_double1.hpp:
 
-/usr/include/c++/13/bits/alloc_traits.h:
-
 /usr/include/linux/limits.h:
+
+/usr/include/c++/13/ratio:
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/vector_float1_precision.hpp:
 
@@ -1329,6 +1426,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 /home/sancheti/comsci/point-sphere/include/glm/ext/matrix_float4x2_precision.hpp:
 
 /home/sancheti/comsci/point-sphere/include/glm/vec3.hpp:
+
+/home/sancheti/comsci/point-sphere/src/shader.h:
 
 /usr/include/c++/13/bits/stl_iterator_base_funcs.h:
 

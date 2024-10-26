@@ -382,4 +382,27 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: \
  /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/vector_uint1.hpp \
  /home/sancheti/comsci/point-sphere/./include/glm/gtc/../gtc/../ext/vector_uint1_sized.hpp \
  /usr/include/c++/13/cstring /usr/include/string.h /usr/include/strings.h \
- /home/sancheti/comsci/point-sphere/./include/glm/gtc/type_ptr.inl
+ /home/sancheti/comsci/point-sphere/./include/glm/gtc/type_ptr.inl \
+ /home/sancheti/comsci/point-sphere/src/shader.h \
+ /usr/include/c++/13/fstream /usr/include/c++/13/bits/codecvt.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
+ /usr/include/c++/13/bits/fstream.tcc /usr/include/c++/13/sstream \
+ /usr/include/c++/13/bits/sstream.tcc /usr/include/c++/13/filesystem \
+ /usr/include/c++/13/bits/fs_fwd.h /usr/include/c++/13/bits/chrono.h \
+ /usr/include/c++/13/ratio /usr/include/c++/13/ctime \
+ /usr/include/c++/13/bits/parse_numbers.h \
+ /usr/include/c++/13/bits/fs_path.h /usr/include/c++/13/locale \
+ /usr/include/c++/13/bits/locale_facets_nonio.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/13/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/13/bits/locale_conv.h /usr/include/c++/13/iomanip \
+ /usr/include/c++/13/bits/quoted_string.h /usr/include/c++/13/codecvt \
+ /usr/include/c++/13/ext/concurrence.h \
+ /usr/include/c++/13/bits/shared_ptr.h \
+ /usr/include/c++/13/bits/shared_ptr_base.h \
+ /usr/include/c++/13/bits/allocated_ptr.h \
+ /usr/include/c++/13/bits/unique_ptr.h \
+ /usr/include/c++/13/ext/aligned_buffer.h \
+ /usr/include/c++/13/bits/fs_dir.h /usr/include/c++/13/bits/fs_ops.h

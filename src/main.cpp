@@ -9,7 +9,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <shader.h>
+#include "shader.h"
 
 #define NUM_POINTS 2000
 #define ESPILON 0.0001
@@ -148,26 +148,22 @@ int main(int, char**) {
      */
     glEnable(GL_PROGRAM_POINT_SIZE);    // Manipulate point size
 
-    // Set up the shader
-    unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-    glCompileShader(vertexShader);
+    /*
+     * Check the file paths
+     */
+
+    std::filesystem::path mainFilePath = std::filesystem::current_path() / "src/main.cpp";
     
-    // Set up the fragment shader
-    unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-    glCompileShader(fragmentShader);
+    // Get the absolute path of the target shader file
+    std::filesystem::path shaderPath = std::filesystem::current_path() / "src/shaders/vertex.glsl";
+    
+    // Calculate the relative path from main.cpp to vertex.glsl
+    std::filesystem::path relativePath = std::filesystem::relative(shaderPath, mainFilePath.parent_path());
 
-    // Link the shaders in a shading program
-    unsigned int shaderProgram = glCreateProgram();
-
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-    glLinkProgram(shaderProgram);
-
-    // Free up unnecessary memory
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader); 
+    std::cout << "Relative Path: " << relativePath << std::endl;
+    
+    // Set up the shader
+    Shader shader("/home/sancheti/comsci/point-sphere/src/shaders/vertex.glsl", "/home/sancheti/comsci/point-sphere/src/shaders/fragment.glsl");
 
     unsigned int VBO = 0;
     glGenBuffers(1, &VBO);
@@ -202,9 +198,8 @@ int main(int, char**) {
         );
 
         // Passing the rotation matrix to the shader
-        int rotationLoc = glGetUniformLocation(shaderProgram, "rotation");
-        glUseProgram(shaderProgram);
-        glUniformMatrix4fv(rotationLoc, 1, GL_FALSE, glm::value_ptr(rotation));
+        shader.use();
+        shader.setMat4("rotation", glm::value_ptr(rotation));
 
         glBindVertexArray(VAO);
         glDrawArrays(GL_POINTS, 0, NUM_POINTS);
@@ -217,7 +212,7 @@ int main(int, char**) {
     // Clean up
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
-    glDeleteProgram(shaderProgram);
+    shader.terminate();
     glfwTerminate();
     return 0;
 } /* main() */

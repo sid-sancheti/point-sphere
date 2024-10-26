@@ -16,12 +16,18 @@
 #define HEIGHT 405
 #define WIDTH 440
 
+ #define min(a,b) \
+   ({ __typeof__ (a) _a = (a); \
+       __typeof__ (b) _b = (b); \
+     _a < _b ? _a : _b; })
+
 const char *vertexShaderSource = "#version 330 core\n"
     "layout (location = 0) in vec3 aPos;\n"
     "uniform mat4 rotation;\n"
     "void main()\n"
     "{\n"
     "   gl_Position = rotation * vec4(aPos, 1.0);\n"
+    "   gl_PointSize = (gl_Position.z + 1.0) / 0.6;     // Map z \\in [-1, 1] to point size \\in [0, 3.3]\n"
     "}\0";
 
 const char *fragmentShaderSource = "#version 330 core\n"
@@ -100,7 +106,7 @@ void populate3Darray() {
  * Callback function: window resize
  */
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
-    glViewport(0, 0, width, height);
+    glViewport(0, 0, min(width, height), min(width, height));
 } /* framebuffer_size_callback() */
 
 /**
@@ -144,12 +150,14 @@ int main(int, char**) {
     }
 
     // Set the viewport
-    glViewport(0, 0, WIDTH, HEIGHT);
+    glViewport(0, 0, min(WIDTH, HEIGHT), min(WIDTH, HEIGHT));
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);  
 
     populate3Darray();
 
-    glEnable(GL_DEPTH_TEST);  
+    // Enables
+    glEnable(GL_DEPTH_TEST);            // Enable depth testing (not sure what for yet)
+    glEnable(GL_PROGRAM_POINT_SIZE);    // Enable changing the size of points 
 
     // Set up the vertex shader
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -201,7 +209,7 @@ int main(int, char**) {
         glm::mat4 rotation = glm::rotate(
             glm::mat4(1.0f),
             (float)glfwGetTime(),
-            glm::vec3(0.53452f, 0.80178f, 0.26726f)
+            glm::vec3(-0.53452f, 0.80178f, 0.26726f)    // A random unit vector (could set this to my mouse position)
         );
 
         // Passing the rotation matrix to the shader

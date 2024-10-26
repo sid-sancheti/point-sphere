@@ -106,7 +106,10 @@ void populate3Darray() {
  * Callback function: window resize
  */
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
-    glViewport(0, 0, min(width, height), min(width, height));
+    int min = width < height ? width : height;
+    int xOffset = (width - min) / 2;
+    int yOffset = (height - min) / 2;
+    glViewport(xOffset, yOffset, min, min);
 } /* framebuffer_size_callback() */
 
 /**
@@ -150,13 +153,18 @@ int main(int, char**) {
     }
 
     // Set the viewport
-    glViewport(0, 0, min(WIDTH, HEIGHT), min(WIDTH, HEIGHT));
+    int min = WIDTH < HEIGHT ? WIDTH : HEIGHT;
+    int xOffset = (WIDTH - min) / 2;
+    int yOffset = (HEIGHT - min) / 2;
+    glViewport(xOffset, yOffset, min, min);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);  
 
     populate3Darray();
 
-    // Enables
-    glEnable(GL_DEPTH_TEST);            // Enable depth testing (not sure what for yet)
+    /*
+     * Enables
+     * Note: Each enables allows a certain attribute to be accessible to the vertex shader
+     */
     glEnable(GL_PROGRAM_POINT_SIZE);    // Enable changing the size of points 
 
     // Set up the vertex shader
@@ -203,7 +211,7 @@ int main(int, char**) {
         processInput(window);
 
         // Render
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT);
 
         // Alter the radians value to increase or decrease the speed of rotation
         glm::mat4 rotation = glm::rotate(

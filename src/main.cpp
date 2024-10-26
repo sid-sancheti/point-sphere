@@ -9,33 +9,14 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <shader.h>
+
 #define NUM_POINTS 2000
 #define ESPILON 0.0001
 #define SCALE 0.9
 
 #define HEIGHT 405
 #define WIDTH 440
-
- #define min(a,b) \
-   ({ __typeof__ (a) _a = (a); \
-       __typeof__ (b) _b = (b); \
-     _a < _b ? _a : _b; })
-
-const char *vertexShaderSource = "#version 330 core\n"
-    "layout (location = 0) in vec3 aPos;\n"
-    "uniform mat4 rotation;\n"
-    "void main()\n"
-    "{\n"
-    "   gl_Position = rotation * vec4(aPos, 1.0);\n"
-    "   gl_PointSize = (gl_Position.z + 1.3) / 0.6;     // Map z \\in [-1, 1] to point size \\in [0, 3.3]\n"
-    "}\0";
-
-const char *fragmentShaderSource = "#version 330 core\n"
-    "out vec4 FragColor;\n"
-    "void main()\n"
-    "{\n"
-    "   FragColor = vec4(1.0f, 1.0f, 1.0f, 1.0f);\n"
-    "}\n\0";
 
 // w is only used for debugging purposes; it is always 1.0
 typedef struct {
@@ -163,11 +144,11 @@ int main(int, char**) {
 
     /*
      * Enables
-     * Note: Each enables allows a certain attribute to be accessible to the vertex shader
+     * Note: Enables allow the vertex shader to manipulate certain attributes
      */
-    glEnable(GL_PROGRAM_POINT_SIZE);    // Enable changing the size of points 
+    glEnable(GL_PROGRAM_POINT_SIZE);    // Manipulate point size
 
-    // Set up the vertex shader
+    // Set up the shader
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
     glCompileShader(vertexShader);
@@ -216,7 +197,7 @@ int main(int, char**) {
         // Alter the radians value to increase or decrease the speed of rotation
         glm::mat4 rotation = glm::rotate(
             glm::mat4(1.0f),
-            (float)glfwGetTime(),
+            (float)glfwGetTime() * 0.7f,
             glm::vec3(-0.53452f, 0.80178f, 0.26726f)    // A random unit vector (could set this to my mouse position)
         );
 

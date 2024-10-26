@@ -11,7 +11,7 @@ https://github.com/sid-sancheti/point-sphere.git -d [/your/target/directory]
 ```
 2. Install GLFW onto your machine.
 
-Ubuntu/Debian based systems
+## Ubuntu/Debian based systems
 ```
 sudo apt update
 sudo apt upgrade -y

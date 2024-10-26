@@ -148,21 +148,12 @@ int main(int, char**) {
      */
     glEnable(GL_PROGRAM_POINT_SIZE);    // Manipulate point size
 
-    /*
-     * Check the file paths
-     */
+    std::filesystem::path p = std::filesystem::current_path();
+    std::cout << "Relative path:" << p << std::endl;
 
-    std::filesystem::path mainFilePath = std::filesystem::current_path() / "src/main.cpp";
+    std::cout << "Absolute path:" << std::filesystem::absolute(p) << std::endl;
     
-    // Get the absolute path of the target shader file
-    std::filesystem::path shaderPath = std::filesystem::current_path() / "src/shaders/vertex.glsl";
-    
-    // Calculate the relative path from main.cpp to vertex.glsl
-    std::filesystem::path relativePath = std::filesystem::relative(shaderPath, mainFilePath.parent_path());
-
-    std::cout << "Relative Path: " << relativePath << std::endl;
-    
-    // Set up the shader
+    // Set up the shader (relative path is with respect to the build directory)
     Shader shader("/home/sancheti/comsci/point-sphere/src/shaders/vertex.glsl", "/home/sancheti/comsci/point-sphere/src/shaders/fragment.glsl");
 
     unsigned int VBO = 0;

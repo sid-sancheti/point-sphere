@@ -28,8 +28,21 @@ public:
         fShaderFile.exceptions (std::ifstream::failbit | std::ifstream::badbit);
         try 
         {
-            std::cout << std::filesystem::exists(vertexPath) << std::endl;
-            std::cout << std::filesystem::exists(fragmentPath) << std::endl;
+
+            // Uncomment to debug file paths
+            #if 0
+                if (std::filesystem::exists(vertexPath)) {
+                    cout << "Vertex Shader FILE FOUND" << endl;
+                } else {
+                    cout << "Vertex Shader FILE NOT FOUND" << endl;
+                }
+
+                if (std::filesystem::exists(fragmentPath)) {
+                    cout << "Fragment Shader FILE FOUND" << endl;
+                } else {
+                    cout << "Fragment Shader FILE NOT FOUND" << endl;
+                }
+            #endif
 
             // open files
             vShaderFile.open(vertexPath);
@@ -129,4 +142,4 @@ private:
         }
     }
 };
-#endif
+#endif  // SHADER_H

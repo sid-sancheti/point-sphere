@@ -148,13 +148,8 @@ int main(int, char**) {
      */
     glEnable(GL_PROGRAM_POINT_SIZE);    // Manipulate point size
 
-    std::filesystem::path p = std::filesystem::current_path();
-    std::cout << "Relative path:" << p << std::endl;
-
-    std::cout << "Absolute path:" << std::filesystem::absolute(p) << std::endl;
-    
-    // Set up the shader (relative path is with respect to the build directory)
-    Shader shader("/home/sancheti/comsci/point-sphere/src/shaders/vertex.glsl", "/home/sancheti/comsci/point-sphere/src/shaders/fragment.glsl");
+    // Set up the shader
+    Shader shader("src/shaders/vertex.glsl", "src/shaders/fragment.glsl");
 
     unsigned int VBO = 0;
     glGenBuffers(1, &VBO);
@@ -172,7 +167,6 @@ int main(int, char**) {
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(VAO);
 
-    glPointSize(2.0f);
     // Main loop
     while (!glfwWindowShouldClose(window)) {
         // Process input

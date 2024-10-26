@@ -27,7 +27,7 @@ const char *vertexShaderSource = "#version 330 core\n"
     "void main()\n"
     "{\n"
     "   gl_Position = rotation * vec4(aPos, 1.0);\n"
-    "   gl_PointSize = (gl_Position.z + 1.0) / 0.6;     // Map z \\in [-1, 1] to point size \\in [0, 3.3]\n"
+    "   gl_PointSize = (gl_Position.z + 1.3) / 0.6;     // Map z \\in [-1, 1] to point size \\in [0, 3.3]\n"
     "}\0";
 
 const char *fragmentShaderSource = "#version 330 core\n"

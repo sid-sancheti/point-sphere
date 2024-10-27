@@ -13,6 +13,9 @@ https://github.com/sid-sancheti/point-sphere.git -d [/your/target/directory]
 ## 2. Setting up the environment
 
 ### Ubuntu/Debian based systems
+I'm not to familiar with other operating systems, but there are online resources available that can guide you through the
+installation process for the dependencies we need.
+
 Install GLFW, an open-source API for displaying OpenGL code on your screen.
 ```
 sudo apt update

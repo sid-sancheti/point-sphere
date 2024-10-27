@@ -3,7 +3,7 @@
 This program generates a rotating point-sphere (a sphere made of points) entirely in C++.
 Dependencies used include GLFW3, Glad, GLM, and GLSL.
 
-![](https://github.com/sid-sancheti/point-sphere/assets/sphere.gif)
+![sphere](https://github.com/user-attachments/assets/a6a0cd43-eeaf-47a9-a7ac-fecacba904a9)
 
 ## Running the project
 

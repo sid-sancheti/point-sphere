@@ -190,7 +190,7 @@ int main(int, char**) {
         double relY = (float) height / 2.0f - mouseY;
 
         glm::vec3 directionVector = glm::normalize(glm::vec3(relX, relY, 5.0f));
-        std::cout << "Direction vector: " << glm::to_string(directionVector) << std::endl;
+        // std::cout << "Direction vector: " << glm::to_string(directionVector) << std::endl;
 
         // Render
         glClear(GL_COLOR_BUFFER_BIT);

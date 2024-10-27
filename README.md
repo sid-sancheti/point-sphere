@@ -5,17 +5,19 @@ Dependencies used include GLFW3, Glad, GLM, and GLSL.
 
 
 ## Running the project
-1. Git clone the project onto your machine.
+
+## 1. Git clone the project onto your machine.
 ```
 https://github.com/sid-sancheti/point-sphere.git -d [/your/target/directory]
 ```
-2. Install GLFW onto your machine.
+## 2. Setting up the environment
 
-## Ubuntu/Debian based systems
+### Ubuntu/Debian based systems
+Install GLFW, an open-source API for displaying OpenGL code on your screen.
 ```
 sudo apt update
 sudo apt upgrade -y
-sudo apt install libglfw3-dev -y
+sudo apt install libglfw3-dev
 ```
 Also, install cmake and make if you haven't already
 ```
@@ -23,7 +25,7 @@ sudo apt install cmake -y
 sudo apt install make -y
 ```
 
-3. Run the project
+## 3. Run the project
 
 Navigate to the project directory
 ```
@@ -40,8 +42,11 @@ Run the makefile
 ```
 make
 ```
-and finally, run the executable.
+and finally, run the executable **from the parent directory**. It won't work otherwise because relative file path starts
+from where the project is ran. We need the relative file path to start at the parent directory because we need to access
+the shader files in the src directory.
 ```
-./point-sphere
+cd ..
+./build/point-sphere
 ```
 **Voila**, you should see a rotating sphere on your screen.

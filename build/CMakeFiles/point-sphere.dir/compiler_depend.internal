@@ -258,6 +258,12 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o
  /home/sancheti/comsci/point-sphere/include/glm/gtc/matrix_transform.inl
  /home/sancheti/comsci/point-sphere/include/glm/gtc/type_ptr.hpp
  /home/sancheti/comsci/point-sphere/include/glm/gtc/type_ptr.inl
+ /home/sancheti/comsci/point-sphere/include/glm/gtc/type_precision.hpp
+ /home/sancheti/comsci/point-sphere/include/glm/gtc/type_precision.inl
+ /home/sancheti/comsci/point-sphere/include/glm/gtx/dual_quaternion.hpp
+ /home/sancheti/comsci/point-sphere/include/glm/gtx/dual_quaternion.inl
+ /home/sancheti/comsci/point-sphere/include/glm/gtx/string_cast.hpp
+ /home/sancheti/comsci/point-sphere/include/glm/gtx/string_cast.inl
  /home/sancheti/comsci/point-sphere/include/glm/integer.hpp
  /home/sancheti/comsci/point-sphere/include/glm/mat2x2.hpp
  /home/sancheti/comsci/point-sphere/include/glm/packing.hpp
@@ -354,6 +360,7 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o
  /usr/include/c++/13/clocale
  /usr/include/c++/13/cmath
  /usr/include/c++/13/codecvt
+ /usr/include/c++/13/cstdarg
  /usr/include/c++/13/cstddef
  /usr/include/c++/13/cstdint
  /usr/include/c++/13/cstdio

@@ -256,6 +256,12 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
   /home/sancheti/comsci/point-sphere/include/glm/gtc/matrix_transform.inl \
   /home/sancheti/comsci/point-sphere/include/glm/gtc/type_ptr.hpp \
   /home/sancheti/comsci/point-sphere/include/glm/gtc/type_ptr.inl \
+  /home/sancheti/comsci/point-sphere/include/glm/gtc/type_precision.hpp \
+  /home/sancheti/comsci/point-sphere/include/glm/gtc/type_precision.inl \
+  /home/sancheti/comsci/point-sphere/include/glm/gtx/dual_quaternion.hpp \
+  /home/sancheti/comsci/point-sphere/include/glm/gtx/dual_quaternion.inl \
+  /home/sancheti/comsci/point-sphere/include/glm/gtx/string_cast.hpp \
+  /home/sancheti/comsci/point-sphere/include/glm/gtx/string_cast.inl \
   /home/sancheti/comsci/point-sphere/include/glm/integer.hpp \
   /home/sancheti/comsci/point-sphere/include/glm/mat2x2.hpp \
   /home/sancheti/comsci/point-sphere/include/glm/packing.hpp \
@@ -352,6 +358,7 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
   /usr/include/c++/13/clocale \
   /usr/include/c++/13/cmath \
   /usr/include/c++/13/codecvt \
+  /usr/include/c++/13/cstdarg \
   /usr/include/c++/13/cstddef \
   /usr/include/c++/13/cstdint \
   /usr/include/c++/13/cstdio \
@@ -791,6 +798,18 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /usr/include/c++/13/bits/alloc_traits.h:
 
+/usr/include/c++/13/bits/allocated_ptr.h:
+
+/usr/include/c++/13/bit:
+
+/usr/include/c++/13/backward/binders.h:
+
+/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
+
+/usr/include/c++/13/bits/streambuf_iterator.h:
+
+/usr/include/GLFW/glfw3.h:
+
 /usr/include/x86_64-linux-gnu/bits/math-vector.h:
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/matrix_float3x2.hpp:
@@ -818,8 +837,6 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 /home/sancheti/comsci/point-sphere/include/glm/ext/matrix_float2x4_precision.hpp:
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/vector_uint1.hpp:
-
-/home/sancheti/comsci/point-sphere/include/glm/ext/matrix_float2x3_precision.hpp:
 
 /usr/include/c++/13/ctime:
 
@@ -870,6 +887,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 /home/sancheti/comsci/point-sphere/include/glm/detail/type_mat3x2.inl:
 
 /home/sancheti/comsci/point-sphere/include/glm/detail/type_mat4x3.hpp:
+
+/usr/include/c++/13/cstdarg:
 
 /home/sancheti/comsci/point-sphere/include/glm/detail/type_mat4x2.inl:
 
@@ -983,6 +1002,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /home/sancheti/comsci/point-sphere/include/glm/geometric.hpp:
 
+/home/sancheti/comsci/point-sphere/include/glm/gtx/string_cast.inl:
+
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
 /usr/include/c++/13/iomanip:
@@ -997,8 +1018,6 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/vector_float4_precision.hpp:
 
-/usr/include/c++/13/backward/binders.h:
-
 /usr/include/c++/13/bits/requires_hosted.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
@@ -1008,6 +1027,12 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 /usr/include/c++/13/bits/exception_ptr.h:
 
 /home/sancheti/comsci/point-sphere/include/khrplatform.h:
+
+/usr/include/c++/13/bits/stl_iterator_base_funcs.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+/home/sancheti/comsci/point-sphere/include/glm/ext/vector_bool2_precision.hpp:
 
 /usr/include/c++/13/cctype:
 
@@ -1024,12 +1049,6 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/matrix_float4x4_precision.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
-
-/usr/include/c++/13/bits/streambuf_iterator.h:
-
-/usr/include/GLFW/glfw3.h:
 
 /usr/include/c++/13/bits/invoke.h:
 
@@ -1267,10 +1286,6 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/vector_float2.hpp:
 
-/usr/include/c++/13/bits/allocated_ptr.h:
-
-/usr/include/c++/13/bit:
-
 /home/sancheti/comsci/point-sphere/include/glm/ext/scalar_int_sized.hpp:
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/vector_float2_precision.hpp:
@@ -1325,15 +1340,21 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/scalar_constants.hpp:
 
+/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
+
+/usr/include/asm-generic/errno.h:
+
+/home/sancheti/comsci/point-sphere/include/glm/gtc/matrix_transform.hpp:
+
 /usr/include/c++/13/bits/basic_string.tcc:
 
 /home/sancheti/comsci/point-sphere/include/glm/mat3x2.hpp:
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/scalar_constants.inl:
 
-/home/sancheti/comsci/point-sphere/include/glm/vector_relational.hpp:
-
 /usr/include/assert.h:
+
+/home/sancheti/comsci/point-sphere/include/glm/vector_relational.hpp:
 
 /home/sancheti/comsci/point-sphere/include/glm/gtc/constants.hpp:
 
@@ -1350,6 +1371,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 /home/sancheti/comsci/point-sphere/include/glm/ext/matrix_clip_space.inl:
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/matrix_transform.hpp:
+
+/home/sancheti/comsci/point-sphere/include/glm/gtx/dual_quaternion.hpp:
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/quaternion_relational.inl:
 
@@ -1376,6 +1399,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 /home/sancheti/comsci/point-sphere/include/glm/ext/quaternion_float_precision.hpp:
 
 /usr/include/c++/13/bits/functional_hash.h:
+
+/home/sancheti/comsci/point-sphere/include/glm/gtx/dual_quaternion.inl:
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/quaternion_transform.hpp:
 
@@ -1419,6 +1444,14 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /home/sancheti/comsci/point-sphere/include/glm/gtc/type_ptr.inl:
 
+/home/sancheti/comsci/point-sphere/include/glm/ext/matrix_float2x3_precision.hpp:
+
+/home/sancheti/comsci/point-sphere/include/glm/gtc/type_precision.hpp:
+
+/home/sancheti/comsci/point-sphere/include/glm/gtc/type_precision.inl:
+
+/home/sancheti/comsci/point-sphere/include/glm/gtx/string_cast.hpp:
+
 /home/sancheti/comsci/point-sphere/include/glm/mat2x2.hpp:
 
 /home/sancheti/comsci/point-sphere/include/glm/packing.hpp:
@@ -1428,15 +1461,3 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 /home/sancheti/comsci/point-sphere/include/glm/vec3.hpp:
 
 /home/sancheti/comsci/point-sphere/src/shader.h:
-
-/usr/include/c++/13/bits/stl_iterator_base_funcs.h:
-
-/home/sancheti/comsci/point-sphere/include/glm/ext/vector_bool2_precision.hpp:
-
-/usr/include/asm-generic/errno-base.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
-
-/home/sancheti/comsci/point-sphere/include/glm/gtc/matrix_transform.hpp:
-
-/usr/include/asm-generic/errno.h:

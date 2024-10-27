@@ -9,6 +9,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/gtx/string_cast.hpp>      // For print vectors and matrices
+
+
 #include "shader.h"
 
 #define NUM_POINTS 2000
@@ -138,6 +142,7 @@ int main(int, char**) {
     int xOffset = (WIDTH - min) / 2;
     int yOffset = (HEIGHT - min) / 2;
     glViewport(xOffset, yOffset, min, min);
+
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);  
 
     populate3Darray();
@@ -172,6 +177,21 @@ int main(int, char**) {
         // Process input
         processInput(window);
 
+        // Get mouse position and window position to make the sphere rotate in the direction
+        // of the user's mouse
+
+        double mouseX, mouseY;
+        glfwGetCursorPos(window, &mouseX, &mouseY);
+
+        int width, height;
+        glfwGetWindowSize(window, &width, &height);
+
+        double relX = -1.0f * (float) width / 2.0f + mouseX;
+        double relY = (float) height / 2.0f - mouseY;
+
+        glm::vec3 directionVector = glm::normalize(glm::vec3(relX, relY, 5.0f));
+        std::cout << "Direction vector: " << glm::to_string(directionVector) << std::endl;
+
         // Render
         glClear(GL_COLOR_BUFFER_BIT);
 
@@ -179,7 +199,7 @@ int main(int, char**) {
         glm::mat4 rotation = glm::rotate(
             glm::mat4(1.0f),
             (float)glfwGetTime() * 0.7f,
-            glm::vec3(-0.53452f, 0.80178f, 0.26726f)    // A random unit vector (could set this to my mouse position)
+            glm::normalize(directionVector)    // A random unit vector (could set this to my mouse position)
         );
 
         // Passing the rotation matrix to the shader

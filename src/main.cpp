@@ -22,6 +22,8 @@
 #define HEIGHT 405
 #define WIDTH 440
 
+#define MOUSE_TRACKING 0
+
 // w is only used for debugging purposes; it is always 1.0
 typedef struct {
     float x, y;
@@ -180,6 +182,7 @@ int main(int, char**) {
         // Get mouse position and window position to make the sphere rotate in the direction
         // of the user's mouse
 
+        #if MOUSE_TRACKING          // Set to 1 to enable mouse tracking
         double mouseX, mouseY;
         glfwGetCursorPos(window, &mouseX, &mouseY);
 
@@ -190,6 +193,11 @@ int main(int, char**) {
         double relY = (float) height / 2.0f - mouseY;
 
         glm::vec3 directionVector = glm::normalize(glm::vec3(relX, relY, 5.0f));
+
+        #else
+        glm::vec3 directionVector = glm::normalize(glm::vec3(-2, 3, 1));
+        #endif
+
         // std::cout << "Direction vector: " << glm::to_string(directionVector) << std::endl;
 
         // Render

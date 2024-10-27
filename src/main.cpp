@@ -198,7 +198,7 @@ int main(int, char**) {
         // Alter the radians value to increase or decrease the speed of rotation
         glm::mat4 rotation = glm::rotate(
             glm::mat4(1.0f),
-            (float)glfwGetTime() * 0.7f,
+            (float)glfwGetTime() * 0.15f,
             glm::normalize(directionVector)    // A random unit vector (could set this to my mouse position)
         );
 

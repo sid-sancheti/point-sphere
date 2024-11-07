@@ -272,7 +272,7 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o
  /home/sancheti/comsci/point-sphere/include/glm/vec3.hpp
  /home/sancheti/comsci/point-sphere/include/glm/vec4.hpp
  /home/sancheti/comsci/point-sphere/include/khrplatform.h
- /home/sancheti/comsci/point-sphere/src/shader.h
+ /home/sancheti/comsci/point-sphere/include/shader.h
  /usr/include/GLFW/glfw3.h
  /usr/include/alloca.h
  /usr/include/asm-generic/errno-base.h

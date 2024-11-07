@@ -270,7 +270,7 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
   /home/sancheti/comsci/point-sphere/include/glm/vec3.hpp \
   /home/sancheti/comsci/point-sphere/include/glm/vec4.hpp \
   /home/sancheti/comsci/point-sphere/include/khrplatform.h \
-  /home/sancheti/comsci/point-sphere/src/shader.h \
+  /home/sancheti/comsci/point-sphere/include/shader.h \
   /usr/include/GLFW/glfw3.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
@@ -1070,6 +1070,8 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/matrix_float2x3.hpp:
 
+/home/sancheti/comsci/point-sphere/include/shader.h:
+
 /usr/include/c++/13/string:
 
 /home/sancheti/comsci/point-sphere/include/glm/ext/matrix_float3x3.hpp:
@@ -1459,5 +1461,3 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: /home/sancheti/comsci/point-sphere/s
 /home/sancheti/comsci/point-sphere/include/glm/ext/matrix_float4x2_precision.hpp:
 
 /home/sancheti/comsci/point-sphere/include/glm/vec3.hpp:
-
-/home/sancheti/comsci/point-sphere/src/shader.h:

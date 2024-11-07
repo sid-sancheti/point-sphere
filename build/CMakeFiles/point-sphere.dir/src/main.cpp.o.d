@@ -390,7 +390,7 @@ CMakeFiles/point-sphere.dir/src/main.cpp.o: \
  /home/sancheti/comsci/point-sphere/./include/glm/gtx/../gtx/dual_quaternion.inl \
  /home/sancheti/comsci/point-sphere/./include/glm/gtx/string_cast.inl \
  /usr/include/c++/13/cstdarg \
- /home/sancheti/comsci/point-sphere/src/shader.h \
+ /home/sancheti/comsci/point-sphere/./include/shader.h \
  /usr/include/c++/13/fstream /usr/include/c++/13/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \

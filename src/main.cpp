@@ -13,7 +13,7 @@
 #include <glm/gtx/string_cast.hpp>      // For print vectors and matrices
 
 
-#include "shader.h"
+#include <shader.h>
 
 #define NUM_POINTS 2000
 #define ESPILON 0.0001
@@ -22,6 +22,7 @@
 #define HEIGHT 405
 #define WIDTH 440
 
+// Set to 1 to enable mouse tracking
 #define MOUSE_TRACKING 0
 
 // w is only used for debugging purposes; it is always 1.0
@@ -33,24 +34,8 @@ typedef struct {
     float x, y, z;
 } vec3local;
 
-vec3local points3D[3 * NUM_POINTS];
+vec3local points3D[NUM_POINTS];
 
-/**
- * Generates a spiral of points in 3D space
- * NOT USED
- * 
- * @param points2D The 2D array of points to populate; z is always 0
- * @param numPoints The number of points to generate
- */
-void generateSpiral(vec3local * points2D, int numPoints) {
-    float s = -1.0f;
-    const float step_size = 2.0f /(numPoints - 1);
-    for (int i = 0; i < numPoints; i++, s += step_size) {
-        points2D[i].x = s;
-        points2D[i].y = M_PI/2 * copysignf(1.0f, s) * (1 - sqrt(1 - abs(s)));
-        points2D[i].z = 0.0f;
-    }
-}
 /**
  * Populates the 2D array of points using the formula
  * Derived from this paper: https://scholar.rose-hulman.edu/cgi/viewcontent.cgi?article=1387&context=rhumj
@@ -87,7 +72,7 @@ void populate3Darray() {
         points3D[i].y = SCALE * sin(u) * cos(v);
         points3D[i].z = SCALE * sin(v);
     }
-}
+} /* populate3Darray() */
 
 /**
  * Callback function: window resize
@@ -103,17 +88,17 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
  * Callback function: Keyboard input
  * Process input from the user
  */
-void processInput(GLFWwindow *window) {
+void process_input(GLFWwindow *window) {
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
-}
+} /* processInput() */
 
 /**
  * Main function
  * Create and manage the window
  */
 
-int main(int, char**) {
+int main(int argv, char** argc) {
     GLFWwindow * window = NULL;
     if (!glfwInit()) {
         std::cerr << "Issue with inializing glfw" << std::endl;
@@ -167,22 +152,29 @@ int main(int, char**) {
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+    // Pass data to VBO
     glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(float) * NUM_POINTS, points3D, GL_STATIC_DRAW);
+
+    // Tell the VAO how to interpret the data
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), NULL);
     glEnableVertexAttribArray(0);
     
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(VAO);
 
+    // Default value of the direction vector
+    glm::vec3 directionVector = glm::normalize(glm::vec3(-2, 3, 1));
+
     // Main loop
     while (!glfwWindowShouldClose(window)) {
         // Process input
-        processInput(window);
+        process_input(window);
+
+        #if MOUSE_TRACKING
 
         // Get mouse position and window position to make the sphere rotate in the direction
         // of the user's mouse
-
-        #if MOUSE_TRACKING          // Set to 1 to enable mouse tracking
         double mouseX, mouseY;
         glfwGetCursorPos(window, &mouseX, &mouseY);
 
@@ -192,16 +184,13 @@ int main(int, char**) {
         double relX = -1.0f * (float) width / 2.0f + mouseX;
         double relY = (float) height / 2.0f - mouseY;
 
-        glm::vec3 directionVector = glm::normalize(glm::vec3(relX, relY, 5.0f));
-
-        #else
-        glm::vec3 directionVector = glm::normalize(glm::vec3(-2, 3, 1));
+        directionVector = glm::normalize(glm::vec3(relX, relY, 5.0f));
         #endif
 
         // std::cout << "Direction vector: " << glm::to_string(directionVector) << std::endl;
 
         // Render
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // Alter the radians value to increase or decrease the speed of rotation
         glm::mat4 rotation = glm::rotate(

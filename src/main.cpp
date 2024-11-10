@@ -12,6 +12,7 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>      // For print vectors and matrices
 
+#include <random>
 
 #include <shader.h>
 
@@ -74,6 +75,23 @@ void populate3Darray() {
     }
 } /* populate3Darray() */
 
+void populate3Drand() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dis(-180.0, 180.0);
+
+
+    float dist = 200.0;
+    for (int i = 0; i < NUM_POINTS; i++) {
+        double theta = dis(gen);
+        double phi = dis(gen);
+
+        points3D[i].x = SCALE * sin(theta) * cos(phi);
+        points3D[i].y = SCALE * sin(theta) * sin(phi);
+        points3D[i].z = SCALE * cos(theta);
+    }
+}
+
 /**
  * Callback function: window resize
  */
@@ -99,6 +117,9 @@ void process_input(GLFWwindow *window) {
  */
 
 int main(int argv, char** argc) {
+    // Seed the random number generator
+    srand(1);
+
     GLFWwindow * window = NULL;
     if (!glfwInit()) {
         std::cerr << "Issue with inializing glfw" << std::endl;
@@ -124,7 +145,7 @@ int main(int argv, char** argc) {
         return -1;
     }
 
-    // Set the viewport
+    // Set the viewport to the middle of the window
     int min = WIDTH < HEIGHT ? WIDTH : HEIGHT;
     int xOffset = (WIDTH - min) / 2;
     int yOffset = (HEIGHT - min) / 2;
@@ -133,10 +154,10 @@ int main(int argv, char** argc) {
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);  
 
     populate3Darray();
+    // populate3Drand();
 
     /*
-     * Enables
-     * Note: Enables allow the vertex shader to manipulate certain attributes
+     * Allows the vertex shader to manipulate the point size
      */
     glEnable(GL_PROGRAM_POINT_SIZE);    // Manipulate point size
 
@@ -165,7 +186,7 @@ int main(int argv, char** argc) {
 
     // Default value of the direction vector
     glm::vec3 directionVector = glm::normalize(glm::vec3(-2, 3, 1));
-
+    
     // Main loop
     while (!glfwWindowShouldClose(window)) {
         // Process input
@@ -195,7 +216,7 @@ int main(int argv, char** argc) {
         // Alter the radians value to increase or decrease the speed of rotation
         glm::mat4 rotation = glm::rotate(
             glm::mat4(1.0f),
-            (float)glfwGetTime() * 0.15f,
+            (float)glfwGetTime() * 0.07f,
             glm::normalize(directionVector)    // A random unit vector (could set this to my mouse position)
         );
 

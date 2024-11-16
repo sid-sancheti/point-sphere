@@ -13,8 +13,10 @@
 #include <glm/gtx/string_cast.hpp>      // For print vectors and matrices
 
 #include <random>
-
 #include <shader.h>
+
+#include <filesystem>
+namespace fs = std::filesystem;
 
 #define NUM_POINTS 2000
 #define ESPILON 0.0001
@@ -116,7 +118,7 @@ void process_input(GLFWwindow *window) {
  * Create and manage the window
  */
 
-int main(int argv, char** argc) {
+int main(int argc, char* argv[]) {
     // Seed the random number generator
     srand(1);
 
@@ -161,8 +163,20 @@ int main(int argv, char** argc) {
      */
     glEnable(GL_PROGRAM_POINT_SIZE);    // Manipulate point size
 
+    if (argc == 0 || argv[0] == nullptr) {
+        std::cerr << "Unable to determine the executable path." << std::endl;
+        return 1;
+    }
+
+    // Get the executable's directory
+    fs::path execPath = fs::absolute(argv[0]);
+    fs::path execDir = execPath.parent_path();
+
+    // Construct shader paths relative to the executable directory
+    fs::path vertexShaderPath = execDir / "../src/shaders/vertex.glsl";
+    fs::path fragmentShaderPath = execDir / "../src/shaders/fragment.glsl";
     // Set up the shader
-    Shader shader("src/shaders/vertex.glsl", "src/shaders/fragment.glsl");
+    Shader shader(vertexShaderPath.string(), fragmentShaderPath.string());
 
     unsigned int VBO = 0;
     glGenBuffers(1, &VBO);

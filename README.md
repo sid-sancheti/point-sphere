@@ -46,11 +46,8 @@ Run the makefile
 ```
 make
 ```
-and finally, run the executable **from the parent directory**. It won't work otherwise because relative file path starts
-from where the project is ran. We need the relative file path to start at the parent directory because we need to access
-the shader files in the src directory.
+and finally, run the executable
 ```
-cd ..
-./build/point-sphere
+./point-sphere
 ```
 **Voila**, you should see a rotating sphere on your screen.

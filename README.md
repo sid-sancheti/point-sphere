@@ -50,4 +50,4 @@ and finally, run the executable
 ```
 ./point-sphere
 ```
-**Voila**, you should see a rotating sphere on your screen.
+**Voilà**, you should see a rotating sphere on your screen.
